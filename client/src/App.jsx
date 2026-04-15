@@ -9,7 +9,7 @@ import Projects from './sections/Projects';
 import Skills from './sections/Skills';
 import Achievements from './sections/Achievements';
 import Contact from './sections/Contact';
-import Navigation from './components/Navigation';
+import Navigation from './components/navigation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,7 +69,7 @@ function App() {
           <div className="section-padding">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                © 2025 Labish Bardiya. All rights reserved.
+                © 2026 Ome Tiwari. All rights reserved.
               </p>
             </div>
           </div>
