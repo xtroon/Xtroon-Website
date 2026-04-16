@@ -65,10 +65,10 @@ function App() {
         </main>
         
         {/* Footer */}
-        <footer className="py-8 border-t transition-colors duration-300" style={{ borderColor: 'var(--border-color)' }}>
+        <footer className="py-8 border-t transition-colors duration-300 bg-[var(--bg-primary)]" style={{ borderColor: 'var(--border-primary)' }}>
           <div className="section-padding">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+              <p className="text-sm text-center md:text-left text-[var(--text-muted)]">
                 © 2026 Ome Tiwari. All rights reserved.
               </p>
             </div>

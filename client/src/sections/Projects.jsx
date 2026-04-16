@@ -47,65 +47,68 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'CureNet',
-      subtitle: 'Health Intelligence SaaS Platform',
+      title: 'NearSwap',
+      subtitle: 'Campus Marketplace Platform',
       period: '2026',
       description: [
-        'Architecting patient-owned decentralized health records on ABDM framework.',
-        'Engineered secure interoperability with Zero-Knowledge Proofs for data exchange.',
-        'Developed AI-driven clinical summarization engine for rapid doctor insights.',
-        'Built offline-first QR access and automated claims pre-audit systems.',
+        'Built a location-based marketplace enabling 80+ students to buy and sell items on campus.',
+        'Developed full-stack application using React Native, Node.js, and Express.js.',
+        'Integrated OTP verification and WhatsApp Cloud API for secure user authentication.',
+        'Reduced fraud and unauthorized access by 40% through improved verification system.',
       ],
-      skills: ['Flutter', 'FHIR R4', 'ABDM', 'ZK-Proofs', 'AI Summarization'],
+      skills: ['React Native', 'Node.js', 'Express.js', 'MySQL', 'Firebase Cloud Messaging'],
       gradient: 'from-blue-600 to-blue-400',
-      github: 'https://github.com/labishbardiya/CureNet',
-      image: 'curenet.png',
+      github: null,
+      live: 'https://near-swap-website.vercel.app/',
+      image: 'nearswap.png',
     },
     {
-      title: 'MVC System',
-      subtitle: 'Mini Version Control Kernel',
-      period: '2025',
-      description: [
-        'Built a core version control kernel in C with init, add, commit, and log features.',
-        'Implemented FNV-1a hashing and dynamic file maps for efficient tracking.',
-        'Engineered deterministic IDs and integrity checkers for commit verification.',
-        'Developed a visual timeline frontend to track file history and state changes.',
-      ],
-      skills: ['C', 'Low-level Programming', 'Hashing', 'Data Structures', 'JavaScript'],
-      gradient: 'from-blue-500 to-cyan-400',
-      github: 'https://github.com/labishbardiya/Mini-Version-Control-System',
-      image: 'mvc.png',
+    title: 'AI Resume Analyzer',
+    subtitle: 'Resume Optimization Tool using Gemini API',
+    period: '2026',
+    description: [
+      'Built a MERN-based application to analyze and improve resumes using Gemini API.',
+      'Generated ATS-friendly resume suggestions based on user input and job requirements.',
+      'Implemented secure user authentication and dynamic resume processing workflows.',
+    ],
+    skills: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Gemini API'],
+    gradient: 'from-purple-500 to-pink-500',
+    github: 'https://github.com/ometiwari-ai/AI-Resume-Analyzer',
+    live: 'https://ai-resume-analyzer-ome.vercel.app/',
+    image: 'resume-ai.png',
     },
     {
-      title: 'JKLURide',
-      subtitle: 'Smart Campus Sharing',
+      title: 'Bill Management System',
+      subtitle: 'Console-Based Retail Billing Application',
       period: '2025',
       description: [
-        'Production-grade ride-sharing backend with JWT authentication systems.',
-        'Designed scalable DB schema using Prisma ORM and PostgreSQL.',
-        'Implemented dynamic fare-splitting and user credibility scoring.',
-        'Integrated UPI-first payment processing and SOS monitoring modules.',
+        'Developed a console-based billing system for small retail stores using C++.',
+        'Implemented product inventory management and automated bill generation.',
+        'Designed file-based storage system for maintaining transaction records.',
+        'Enabled efficient handling of daily sales and inventory tracking.',
       ],
-      skills: ['TypeScript', 'Node.js', 'PostgreSQL', 'Prisma', 'APIs'],
+      skills: ['C++', 'File Handling', 'Data Structures'],
       gradient: 'from-blue-400 to-indigo-500',
-      github: 'https://github.com/labishbardiya/ride_sharing_project',
-      image: 'jkluride.png',
+      github: 'https://github.com/ometiwari-ai/Billing-Management-System',
+      live: null,
+      image: 'billing.png',
     },
     {
-      title: 'Grid Optimizer',
-      subtitle: 'Power Network Analysis',
+      title: 'Realtime Chat Application',
+      subtitle: 'WebSocket-Based Messaging App',
       period: '2025',
       description: [
-        'Engineered optimization tools using Dijkstra\'s and Kruskal\'s MST algorithms.',
-        'Interactive Dash visualization platform for mapping grid routing and failures.',
-        'Computed edge criticality from load demand and failure probability metrics.',
-        'Visualized flow-cuts and grid dynamics for improved failure impact analysis.',
+        'Built a real-time chat application using HTML, CSS, and JavaScript.',
+        'Implemented WebSocket-based communication for instant message exchange.',
+        'Handled client-side message rendering and dynamic UI updates.',
+        'Enabled low-latency communication for seamless real-time interaction.',
       ],
-      skills: ['Python', 'NetworkX', 'Plotly', 'Algorithm Design', 'Graph Theory'],
-      gradient: 'from-blue-700 to-blue-500',
-      github: 'https://github.com/labishbardiya/Power-Grid-Optimization-and-Visualization-Tool',
-      image: 'powergrid.png',
-    },
+      skills: ['JavaScript', 'WebSockets', 'HTML', 'CSS'],
+      gradient: 'from-blue-500 to-cyan-500',
+      github: 'https://github.com/ometiwari-ai/Realtime-Chat-Application',
+      live: 'https://realtime-chat-ome.vercel.app/',
+      image: 'chatapp.png',
+    }
   ];
 
   const nextProject = () => {
@@ -123,13 +126,13 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" ref={sectionRef} className="py-24 px-6 bg-[#030303] text-white relative overflow-hidden">
+    <section id="projects" ref={sectionRef} className="section-spacing px-6 bg-[var(--bg-primary)] text-[var(--text-primary)] relative overflow-hidden transition-colors duration-300">
       
       {/* Background Blobs */}
       <div className="absolute top-1/4 -right-48 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full" />
       <div className="absolute bottom-1/4 -left-48 w-[500px] h-[500px] bg-blue-500/5 blur-[150px] rounded-full" />
 
-      <div className="max-w-7xl mx-auto relative">
+      <div className="section-padding relative">
         
         {/* Glow effect for header */}
         <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-1/2 h-32 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
@@ -139,10 +142,10 @@ const Projects = () => {
           <p className="text-sm text-blue-500 font-bold uppercase tracking-[0.2em] mb-4">
             Curated Portfolio
           </p>
-          <h2 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+          <h2 className="text-4xl sm:text-6xl font-extrabold text-[var(--text-primary)] tracking-tight">
             Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Projects</span>
           </h2>
-          <p className="text-zinc-400 mt-6 max-w-2xl mx-auto text-lg font-medium leading-relaxed">
+          <p className="text-[var(--text-secondary)] mt-6 max-w-2xl mx-auto text-lg font-medium leading-relaxed">
             Exploring the boundaries between design and technology through innovative solutions in AI, systems, and web architecture.
           </p>
         </div>
@@ -152,7 +155,7 @@ const Projects = () => {
           
           {/* LEFT: Project Details (3 cols) */}
           <div className="lg:col-span-3 space-y-8 project-content">
-            <div className="bg-zinc-900/40 backdrop-blur-xl border border-zinc-800/50 rounded-3xl p-8 md:p-12 relative overflow-hidden group">
+            <div className="bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--border-primary)] rounded-3xl p-8 md:p-12 relative overflow-hidden group shadow-xl">
               
               {/* Animated Accent Line */}
               <div className={`absolute top-0 left-0 h-1 bg-gradient-to-r ${projects[activeIndex].gradient} transition-all duration-700`} style={{ width: '100%' }} />
@@ -162,25 +165,33 @@ const Projects = () => {
                   {projects[activeIndex].period}
                 </div>
                 <div className="flex gap-3">
-                  <a href={projects[activeIndex].github} target="_blank" className="p-2.5 bg-zinc-800/50 rounded-xl hover:bg-blue-500 hover:text-white transition-all">
-                    <Github size={20} />
-                  </a>
-                  <button className="p-2.5 bg-zinc-800/50 rounded-xl hover:bg-blue-500 hover:text-white transition-all opacity-30 cursor-not-allowed">
-                    <ExternalLink size={20} />
-                  </button>
+                  {projects[activeIndex].github && (
+                    <a href={projects[activeIndex].github} target="_blank" rel="noreferrer" className="p-2.5 bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-xl hover:bg-blue-500 hover:text-white transition-all shadow-sm">
+                      <Github size={20} />
+                    </a>
+                  )}
+                  {projects[activeIndex].live ? (
+                    <a href={projects[activeIndex].live} target="_blank" rel="noreferrer" className="p-2.5 bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-xl hover:bg-blue-500 hover:text-white transition-all shadow-sm">
+                      <ExternalLink size={20} />
+                    </a>
+                  ) : (
+                    <button className="p-2.5 bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-xl opacity-30 cursor-not-allowed shadow-sm">
+                      <ExternalLink size={20} />
+                    </button>
+                  )}
                 </div>
               </div>
 
-              <h3 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight group-hover:text-blue-400 transition-colors">
+              <h3 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight group-hover:text-blue-400 transition-colors text-[var(--text-primary)]">
                 {projects[activeIndex].title}
               </h3>
-              <p className="text-xl text-zinc-400 font-medium mb-8">
+              <p className="text-xl text-[var(--text-secondary)] font-medium mb-8">
                 {projects[activeIndex].subtitle}
               </p>
 
               <div className="space-y-4 mb-10">
                 {projects[activeIndex].description.map((item, i) => (
-                  <div key={i} className="flex gap-4 text-zinc-300 leading-relaxed group/item">
+                  <div key={i} className="flex gap-4 text-[var(--text-secondary)] leading-relaxed group/item">
                     <span className="mt-2 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 group-hover/item:scale-150 transition-transform" />
                     {item}
                   </div>
@@ -189,7 +200,7 @@ const Projects = () => {
 
               <div className="flex flex-wrap gap-2.5">
                 {projects[activeIndex].skills.map((skill, i) => (
-                  <span key={i} className="px-4 py-1.5 bg-zinc-800/30 border border-zinc-700/30 rounded-lg text-sm text-zinc-300 font-medium">
+                  <span key={i} className="px-4 py-1.5 bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg text-sm text-[var(--text-secondary)] font-bold shadow-sm">
                     {skill}
                   </span>
                 ))}
@@ -198,7 +209,7 @@ const Projects = () => {
 
             {/* CONTROLS (Desktop Bottom) */}
             <div className="hidden lg:flex items-center gap-6">
-              <button onClick={prevProject} className="w-14 h-14 flex items-center justify-center bg-zinc-900 border border-zinc-800 rounded-2xl hover:bg-blue-600 hover:border-blue-500 transition-all group">
+              <button onClick={prevProject} className="w-14 h-14 flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-2xl hover:bg-blue-600 hover:text-white transition-all group shadow-lg">
                 <ChevronLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
               </button>
               
@@ -212,32 +223,58 @@ const Projects = () => {
                 ))}
               </div>
 
-              <button onClick={nextProject} className="w-14 h-14 flex items-center justify-center bg-zinc-900 border border-zinc-800 rounded-2xl hover:bg-blue-600 hover:border-blue-500 transition-all group">
+              <button onClick={nextProject} className="w-14 h-14 flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-2xl hover:bg-blue-600 hover:text-white transition-all group shadow-lg">
                 <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
 
           {/* RIGHT: Visual (2 cols) */}
-          <div className="lg:col-span-2 space-y-10 group">
+          <div className="lg:col-span-2 space-y-6 lg:space-y-10 group order-first lg:order-last">
             
-            <div className="relative aspect-square md:aspect-[4/3] lg:aspect-square w-full">
+            <div className="relative aspect-video sm:aspect-[4/3] lg:aspect-square w-full">
               {/* Decorative Frame */}
               <div className={`absolute inset-0 bg-gradient-to-br ${projects[activeIndex].gradient} opacity-20 blur-2xl rounded-3xl group-hover:opacity-40 transition-opacity`} />
               
-              <div className="absolute inset-0 bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
+              <div className="absolute inset-0 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 group-hover:scale-[1.02]">
                 {/* Browser Header Mockup */}
-                <div className="h-8 bg-zinc-800/80 border-b border-zinc-700/50 flex items-center px-4 gap-1.5">
+                <div className="h-8 bg-[var(--bg-primary)] border-b border-[var(--border-primary)] flex items-center px-4 gap-1.5">
                   <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
                   <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
                   <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
                 </div>
                 
-                <div className="w-full h-full flex items-center justify-center bg-zinc-950/50 text-zinc-700 group-hover:text-blue-500 transition-colors">
-                  <div className="text-center p-10">
-                    <ImageIcon size={64} className="mx-auto mb-4 opacity-10 group-hover:opacity-100 transition-opacity duration-1000" />
-                    <p className="text-xs uppercase tracking-widest font-bold opacity-30">{projects[activeIndex].title} Preview</p>
-                  </div>
+                <div className="w-full h-full relative group/img cursor-zoom-in">
+                  {projects[activeIndex].image ? (
+                    <>
+                      <img 
+                        src={`/${projects[activeIndex].image}`} 
+                        alt={projects[activeIndex].title}
+                        className="w-full h-full object-cover transition-all duration-1000 group-hover/img:scale-110"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                      {/* Fallback hidden by default unless img fails */}
+                      <div className="hidden absolute inset-0 items-center justify-center bg-[var(--bg-secondary)] text-[var(--text-muted)]">
+                        <div className="text-center p-10">
+                          <ImageIcon size={64} className="mx-auto mb-4 opacity-20" />
+                          <p className="text-xs uppercase tracking-widest font-bold opacity-30">{projects[activeIndex].title} Preview</p>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-[var(--bg-secondary)] text-[var(--text-muted)] group-hover:text-blue-500 transition-colors">
+                      <div className="text-center p-10">
+                        <ImageIcon size={64} className="mx-auto mb-4 opacity-10 group-hover:opacity-100 transition-opacity duration-1000" />
+                        <p className="text-xs uppercase tracking-widest font-bold opacity-30 text-[var(--text-muted)]">{projects[activeIndex].title} Preview</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Subtle Dark Overlay for better depth */}
+                  <div className="absolute inset-0 bg-black/10 group-hover/img:bg-black/0 transition-colors duration-500 pointer-events-none" />
                 </div>
               </div>
             </div>
@@ -248,10 +285,10 @@ const Projects = () => {
                 <div 
                   key={i}
                   onClick={() => setActiveIndex(i)}
-                  className={`p-4 rounded-2xl border transition-all cursor-pointer group/nav ${i === activeIndex ? 'bg-blue-500/10 border-blue-500/50' : 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-600'}`}
+                  className={`p-4 rounded-2xl border transition-all cursor-pointer group/nav shadow-sm ${i === activeIndex ? 'bg-blue-500/10 border-blue-500/50' : 'bg-[var(--bg-secondary)] border-[var(--border-primary)] hover:border-blue-400'}`}
                 >
-                  <p className={`text-xs font-bold uppercase tracking-wider mb-2 ${i === activeIndex ? 'text-blue-400' : 'text-zinc-600'}`}>0{i + 1}</p>
-                  <h4 className={`text-sm font-bold ${i === activeIndex ? 'text-white' : 'text-zinc-500 group-hover/nav:text-zinc-300'}`}>{proj.title}</h4>
+                  <p className={`text-xs font-bold uppercase tracking-wider mb-2 ${i === activeIndex ? 'text-blue-400' : 'text-[var(--text-muted)]'}`}>0{i + 1}</p>
+                  <h4 className={`text-sm font-bold ${i === activeIndex ? 'text-[var(--text-primary)]' : 'text-[var(--text-muted)] group-hover/nav:text-[var(--text-primary)] transition-colors'}`}>{proj.title}</h4>
                 </div>
               ))}
             </div>
@@ -260,16 +297,16 @@ const Projects = () => {
 
           {/* Mobile Controls */}
           <div className="lg:hidden flex items-center justify-between col-span-1 mt-6">
-            <button onClick={prevProject} className="p-4 bg-zinc-900 border border-zinc-800 rounded-2xl">
-              <ChevronLeft size={24} />
+            <button onClick={prevProject} className="p-4 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-2xl shadow-md">
+              <ChevronLeft size={24} className="text-[var(--text-primary)]" />
             </button>
             <div className="flex gap-2">
               {projects.map((_, i) => (
-                <div key={i} className={`w-2 h-2 rounded-full ${i === activeIndex ? 'bg-blue-500' : 'bg-zinc-800'}`} />
+                <div key={i} className={`w-2 h-2 rounded-full transition-all duration-300 ${i === activeIndex ? 'bg-blue-500 w-6' : 'bg-[var(--border-primary)]'}`} />
               ))}
             </div>
-            <button onClick={nextProject} className="p-4 bg-zinc-900 border border-zinc-800 rounded-2xl">
-              <ChevronRight size={24} />
+            <button onClick={nextProject} className="p-4 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-2xl shadow-md">
+              <ChevronRight size={24} className="text-[var(--text-primary)]" />
             </button>
           </div>
 

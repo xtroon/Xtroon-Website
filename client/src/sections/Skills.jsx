@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Code2, Monitor, Server, Brain, Zap, BookOpen } from "lucide-react";
+import { Code2, Monitor, Server, Brain, Zap, BookOpen, Database } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,68 +61,78 @@ const Skills = () => {
     {
       title: "Languages",
       icon: Code2,
-      items: ["Python", "JavaScript", "C++", "SQL", "HTML", "CSS"],
+      items: ["Python", "C", "C++", "JavaScript (ES6)", "SQL"],
     },
     {
       title: "Frontend",
       icon: Monitor,
-      items: ["React.js", "Tailwind CSS", "Next.js", "Redux", "Figma"],
+      items: ["React.js", "Next.js", "Tailwind CSS", "HTML", "CSS"],
     },
     {
-      title: "Backend & Systems",
+      title: "Backend",
       icon: Server,
-      items: ["Node.js", "Express.js", "PostgreSQL", "MongoDB", "Git", "Docker"],
+      items: ["Node.js", "Express.js", "Django", "REST APIs"],
     },
     {
-      title: "AI & Fundamentals",
+      title: "Databases & Tools",
+      icon: Database,
+      items: ["MongoDB", "PostgreSQL", "Git", "GitHub", "Postman", "Vercel", "Render"],
+    },
+    {
+      title: "Core Concepts",
       icon: Brain,
-      items: ["Machine Learning", "Data Structures", "Algorithms", "APIs", "Automation"],
+      items: ["Data Structures & Algorithms", "OOP", "Problem Solving"],
+    },
+    {
+      title: "Data / AI",
+      icon: Zap,
+      items: ["NumPy", "Pandas", "Basic Data Analysis", "Automation"],
     },
   ];
 
   const core = [
-    { name: "Python", level: 90 },
-    { name: "Full-Stack (React/Node)", level: 85 },
-    { name: "C++ (DSA)", level: 80 },
-    { name: "Systems & Architecture", level: 75 },
+  { name: "Python", level: 80 },
+  { name: "Full-Stack (React/Node)", level: 80 },
+  { name: "C++ (DSA)", level: 75 },
+  { name: "Backend Development", level: 75 },
+  { name: "Data Analysis (NumPy/Pandas)", level: 70 },
   ];
 
   const academics = [
-    "Data Structures", "Algorithms", "Operating Systems", "Computer Networks", 
-    "Machine Learning", "Object Oriented Programming", "Database Management", 
-    "Computer Security", "Discrete Mathematics", "Theory of Computation"
+    "Data Structures & Algorithms", "Database Management System", "Computer Networks", 
+    "Object Oriented Programming", "Software Engineering", "Computer Organization & Architecture",
   ];
 
   return (
-    <section id="skills" ref={sectionRef} className="py-24 px-6 bg-[#030303] text-white overflow-hidden">
+    <section id="skills" ref={sectionRef} className="section-spacing px-6 bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300 overflow-hidden relative">
       
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative">
+      <div className="section-padding relative">
 
         {/* Header Section */}
         <div className="mb-20 skills-header text-center">
           <p className="reveal-header text-sm text-blue-500 font-bold uppercase tracking-[0.2em] mb-4">
             Technical Stack
           </p>
-          <h2 className="reveal-header text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
+          <h2 className="reveal-header text-4xl md:text-6xl font-extrabold text-[var(--text-primary)] tracking-tight mb-6 transition-colors font-sans">
             My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Arsenal</span>
           </h2>
-          <p className="reveal-header text-zinc-300 text-lg max-w-2xl mx-auto font-medium leading-relaxed">
+          <p className="reveal-header text-[var(--text-secondary)] text-lg max-w-2xl mx-auto font-medium leading-relaxed transition-colors">
             A specialized collection of tools and technologies I use to build scalable, high-performance applications and AI systems.
           </p>
         </div>
 
         {/* Skill Categories Grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
+        <div className="grid sm:grid-cols-2 gap-6 mb-12">
           {skillGroups.map((group, i) => (
-            <div key={i} className="reveal-card group bg-zinc-900/60 backdrop-blur-md border border-zinc-800 rounded-2xl p-8 hover:border-blue-500/40 transition-all duration-500">
+            <div key={i} className="reveal-card group bg-[var(--bg-secondary)] backdrop-blur-md border border-[var(--border-primary)] rounded-2xl p-8 hover:border-blue-500/40 transition-all duration-500 shadow-sm">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 flex items-center justify-center bg-blue-500/10 text-blue-400 rounded-xl group-hover:bg-blue-500 group-hover:text-white transition-all shadow-lg shadow-blue-500/5">
                   <group.icon size={22} />
                 </div>
-                <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                <h3 className="text-2xl font-bold tracking-tight text-[var(--text-primary)] group-hover:text-blue-400 transition-colors">
                   {group.title}
                 </h3>
               </div>
@@ -131,7 +141,7 @@ const Skills = () => {
                 {group.items.map((item, index) => (
                   <span
                     key={index}
-                    className="px-4 py-1.5 text-sm bg-zinc-800 border border-zinc-700/50 rounded-lg text-zinc-100 font-bold hover:text-white hover:border-blue-500/50 transition-all cursor-default"
+                    className="px-4 py-1.5 text-sm bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg text-[var(--text-secondary)] font-bold hover:text-blue-500 hover:border-blue-500/50 transition-all cursor-default shadow-sm"
                   >
                     {item}
                   </span>
@@ -142,20 +152,20 @@ const Skills = () => {
         </div>
 
         {/* Academic Coursework Section - Solid Background for High Visibility */}
-        <div className="reveal-card group bg-zinc-900 border border-zinc-700/50 rounded-2xl p-8 mb-16 hover:border-blue-500/40 transition-all duration-500 relative">
+        <div className="reveal-card group bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-2xl p-8 mb-16 hover:border-blue-500/40 transition-all duration-500 relative shadow-sm">
           <div className="flex items-center gap-4 mb-10">
             <div className="w-12 h-12 flex items-center justify-center bg-blue-500/10 text-blue-400 rounded-xl group-hover:bg-blue-500 group-hover:text-white transition-all">
               <BookOpen size={22} />
             </div>
-            <h3 className="text-2xl font-bold tracking-tight text-white group-hover:text-blue-400 transition-colors uppercase">
+            <h3 className="text-2xl font-bold tracking-tight text-[var(--text-primary)] group-hover:text-blue-400 transition-colors uppercase">
               Academic Coursework
             </h3>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2 sm:gap-3">
             {academics.map((subject, index) => (
               <span
                 key={index}
-                className="px-5 py-2 text-sm bg-zinc-800 border border-zinc-700/50 rounded-xl text-white font-bold hover:bg-blue-500/10 hover:text-blue-400 hover:border-blue-500/50 transition-all cursor-default shadow-sm"
+                className="px-3 py-1.5 sm:px-5 sm:py-2 text-[11px] sm:text-sm bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg sm:rounded-xl text-[var(--text-secondary)] font-bold hover:bg-blue-500/10 hover:text-blue-400 hover:border-blue-500/50 transition-all cursor-default shadow-sm"
               >
                 {subject}
               </span>
@@ -164,10 +174,10 @@ const Skills = () => {
         </div>
 
         {/* Core Competencies Section */}
-        <div className="reveal-card bg-zinc-900/60 backdrop-blur-md border border-zinc-800 rounded-3xl p-8 md:p-12">
+        <div className="reveal-card bg-[var(--bg-secondary)] backdrop-blur-md border border-[var(--border-primary)] rounded-3xl p-8 md:p-12 shadow-lg">
           <div className="flex items-center gap-4 mb-10 justify-center">
             <Zap className="text-blue-500" size={24} />
-            <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight leading-none text-center">
+            <h3 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] tracking-tight leading-none text-center">
               Core Competencies
             </h3>
           </div>
@@ -176,11 +186,11 @@ const Skills = () => {
             {core.map((skill, i) => (
               <div key={i} className="space-y-4">
                 <div className="flex justify-between items-end">
-                  <span className="text-lg font-bold text-zinc-100">{skill.name}</span>
+                  <span className="text-lg font-bold text-[var(--text-primary)]">{skill.name}</span>
                   <span className="text-blue-500 font-bold font-mono text-lg">{skill.level}%</span>
                 </div>
 
-                <div className="w-full h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <div className="w-full h-2 bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-full overflow-hidden">
                   <div
                     className="skill-progress h-full bg-gradient-to-r from-blue-600 to-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.3)] rounded-full w-0"
                     data-width={`${skill.level}%`}

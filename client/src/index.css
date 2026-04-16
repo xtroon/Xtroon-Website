@@ -1,29 +1,56 @@
 @import "tailwindcss";
 
 :root {
-  --border-color: #e5e7eb;
-  --text-primary: #000000;
-  --text-secondary: #666666;
+  --bg-primary: #ffffff;
+  --bg-primary-rgb: 255, 255, 255;
+  --bg-secondary: #f9fafb;
+  --bg-secondary-rgb: 249, 250, 251;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --border-primary: #e5e7eb;
+  --card-bg: #ffffff;
+  --card-border: #f3f4f6;
+  --accent-blue: #2563eb;
+  --accent-cyan: #0891b2;
+  --glow-color: rgba(37, 99, 235, 0.05);
+  color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --border-color: #2d2d2d;
-  --text-primary: #ffffff;
-  --text-secondary: #999999;
+  --bg-primary: #030303;
+  --bg-primary-rgb: 3, 3, 3;
+  --bg-secondary: #0a0a0a;
+  --bg-secondary-rgb: 10, 10, 10;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted: #6b7280;
+  --border-primary: #1f2937;
+  --card-bg: #09090b;
+  --card-border: #18181b;
+  --accent-blue: #3b82f6;
+  --accent-cyan: #22d3ee;
+  --glow-color: rgba(59, 130, 246, 0.1);
+  color-scheme: dark;
 }
 
-html {
-  scroll-behavior: smooth;
+* {
+  border-color: var(--border-primary);
+}
+
+html, body, #root {
+  height: 100%;
 }
 
 body {
+  margin: 0;
   color: var(--text-primary);
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-[data-theme="dark"] body {
-  background-color: #1a1a1a;
-}
+
 
 .noise-overlay {
   position: fixed;
@@ -38,6 +65,49 @@ body {
 }
 
 .section-padding {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-padding {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
+.section-spacing {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s infinite;
+}
+@keyframes scan {
+  0% { top: 0; }
+  100% { top: 100%; }
 }

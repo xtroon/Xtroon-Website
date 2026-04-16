@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Mail, MapPin, Laptop, Send, Github, Linkedin, Youtube, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Laptop, Send, Github, Linkedin, Twitter, ArrowRight } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const sectionRef = useRef(null);
+  const formRef = useRef(null);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -67,20 +69,36 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      alert("Message sent successfully!");
+
+    // EmailJS credentials from environment variables
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID; 
+    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    try {
+      await emailjs.sendForm(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        formRef.current,
+        PUBLIC_KEY
+      );
+      
+      alert("Message sent successfully! I will get back to you soon.");
       setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      alert("Something went wrong. Please try again or email me directly.");
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: "Email",
-      value: "omtiwari9828@gmail.com",
-      link: "mailto:omtiwari9828@gmail.com"
+      value: "ometiwari.ai@gmail.com",
+      link: "mailto:ometiwari.ai@gmail.com"
     },
     {
       icon: MapPin,
@@ -95,22 +113,22 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" ref={sectionRef} className="relative py-24 px-6 bg-black text-white overflow-hidden">
+    <section id="contact" ref={sectionRef} className="relative section-spacing px-6 bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300 overflow-hidden">
       
       {/* Background Accents */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="section-padding relative z-10">
 
         {/* HEADER */}
-        <div className="mb-20 contact-header text-center lg:text-left">
+        <div className="mb-20 contact-header text-center">
           <p className="text-sm text-blue-500 font-bold uppercase tracking-[0.2em] mb-4">
             Get In Touch
           </p>
-          <h2 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-extrabold text-[var(--text-primary)] tracking-tight">
             Let's Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Something Great.</span>
           </h2>
-          <p className="text-zinc-400 mt-6 max-w-xl text-lg font-medium leading-relaxed">
+          <p className="text-[var(--text-secondary)] mt-6 max-w-xl mx-auto text-lg font-medium leading-relaxed">
             I'm currently looking for new opportunities and collaborations. Whether you have a question or just want to say hi, I'll try my best to get back to you!
           </p>
         </div>
@@ -121,18 +139,18 @@ const Contact = () => {
           <div className="space-y-10">
             <div className="space-y-8">
               {contactInfo.map((info, i) => (
-                <div key={i} className="contact-info-item group flex items-start gap-6">
-                  <div className="w-12 h-12 shrink-0 flex items-center justify-center bg-zinc-900 border border-zinc-800 rounded-xl group-hover:border-blue-500/50 group-hover:bg-blue-500/10 transition-all duration-300">
-                    <info.icon size={20} className="text-blue-400 group-hover:scale-110 transition-transform" />
+                <div key={i} className="contact-info-item group flex items-start gap-4 sm:gap-6">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-xl group-hover:border-blue-500/50 group-hover:bg-blue-500/10 transition-all duration-300 shadow-sm">
+                    <info.icon size={18} className="text-blue-400 group-hover:scale-110 transition-transform" />
                   </div>
-                  <div>
-                    <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1">{info.label}</p>
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest mb-1">{info.label}</p>
                     {info.link ? (
-                       <a href={info.link} className="text-lg font-bold text-zinc-100 hover:text-blue-400 transition-colors">
+                       <a href={info.link} className="text-base sm:text-lg font-bold text-[var(--text-primary)] hover:text-blue-400 transition-colors break-words">
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-lg font-bold text-zinc-200">{info.value}</p>
+                      <p className="text-base sm:text-lg font-bold text-[var(--text-primary)]">{info.value}</p>
                     )}
                   </div>
                 </div>
@@ -140,20 +158,20 @@ const Contact = () => {
             </div>
 
             {/* Social Links Card */}
-            <div className="contact-info-item p-8 bg-zinc-900/40 backdrop-blur-xl border border-zinc-800/50 rounded-[2rem] space-y-6">
-              <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Connect with me</p>
+            <div className="contact-info-item p-8 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--border-primary)] rounded-[2rem] space-y-6 shadow-sm">
+              <p className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest">Connect with me</p>
               <div className="flex flex-wrap gap-4">
                 {[
-                  { icon: Github, label: "GitHub", href: "https://github.com" },
-                  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
-                  { icon: Youtube, label: "YouTube", href: "https://youtube.com" }
+                  { icon: Github, label: "GitHub", href: "https://github.com/ometiwari-ai" },
+                  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/ometiwari-ai/" },
+                  { icon: Twitter, label: "Twitter", href: "https://x.com/ometiwari_ai" }
                 ].map((social, i) => (
                   <a
                     key={i}
                     href={social.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-12 h-12 flex items-center justify-center bg-zinc-800 border border-zinc-700 rounded-xl hover:bg-blue-600 hover:border-blue-400 hover:-translate-y-1 transition-all"
+                    className="w-12 h-12 flex items-center justify-center bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-xl text-[var(--text-primary)] hover:bg-blue-600 hover:text-white hover:border-blue-400 hover:-translate-y-1 transition-all shadow-sm"
                     aria-label={social.label}
                   >
                     <social.icon size={20} />
@@ -167,10 +185,10 @@ const Contact = () => {
           <div className="contact-form relative">
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/10 to-transparent blur-2xl opacity-50 rounded-full pointer-events-none" />
             
-            <form onSubmit={handleSubmit} className="relative bg-zinc-900/40 backdrop-blur-xl border border-zinc-800/50 p-8 md:p-12 rounded-[2.5rem] space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="relative bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--border-primary)] p-6 md:p-12 rounded-[2rem] md:rounded-[2.5rem] space-y-6 shadow-xl">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-xs font-bold text-zinc-400 uppercase tracking-widest ml-1">Your Name</label>
+                  <label htmlFor="name" className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Your Name</label>
                   <input
                     type="text"
                     id="name"
@@ -179,11 +197,11 @@ const Contact = () => {
                     placeholder="Ome Tiwari"
                     value={form.name}
                     onChange={handleChange}
-                    className="w-full bg-zinc-950/50 border border-zinc-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none px-6 py-4 rounded-2xl text-zinc-100 transition-all"
+                    className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none px-6 py-4 rounded-2xl text-[var(--text-primary)] transition-all shadow-inner"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-xs font-bold text-zinc-400 uppercase tracking-widest ml-1">Email Address</label>
+                  <label htmlFor="email" className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Email Address</label>
                   <input
                     type="email"
                     id="email"
@@ -192,13 +210,13 @@ const Contact = () => {
                     placeholder="name@example.com"
                     value={form.email}
                     onChange={handleChange}
-                    className="w-full bg-zinc-950/50 border border-zinc-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none px-6 py-4 rounded-2xl text-zinc-100 transition-all"
+                    className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none px-6 py-4 rounded-2xl text-[var(--text-primary)] transition-all shadow-inner"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-xs font-bold text-zinc-400 uppercase tracking-widest ml-1">Message</label>
+                <label htmlFor="message" className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Message</label>
                 <textarea
                   id="message"
                   name="message"
@@ -207,7 +225,7 @@ const Contact = () => {
                   rows={5}
                   value={form.message}
                   onChange={handleChange}
-                  className="w-full bg-zinc-950/50 border border-zinc-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none px-6 py-4 rounded-2xl text-zinc-100 transition-all resize-none"
+                  className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none px-6 py-4 rounded-2xl text-[var(--text-primary)] transition-all resize-none shadow-inner"
                 />
               </div>
 
@@ -219,7 +237,7 @@ const Contact = () => {
                 <span className="relative z-10 flex items-center gap-2">
                   {isSubmitting ? "Sending..." : "Send Message"}
                   <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </span>
+                </span> 
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
               </button>
 
