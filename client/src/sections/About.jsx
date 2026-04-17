@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaTrophy, FaAward,FaCode, FaYoutube, FaMicrochip, FaGraduationCap } from "react-icons/fa";
+import aboutProfileImg from "../assets/profile/me2.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,7 +112,7 @@ const About = () => {
               {/* Main Image Wrapper */}
               <div className="relative w-full h-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-[var(--bg-secondary)] transition-all duration-500 group-hover:shadow-cyan-500/20 group-hover:-translate-y-2">
                 <img
-                  src="/me2.jpg"
+                  src={aboutProfileImg}
                   alt="Om Tiwari"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />

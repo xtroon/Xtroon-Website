@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Mail, MapPin, Laptop, Send, Github, Linkedin, Twitter, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Laptop, Send, Github, Linkedin, Twitter, ArrowRight, Code2, CheckCircle2, AlertCircle, LoaderCircle } from "lucide-react";
 import emailjs from '@emailjs/browser';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,6 +16,7 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -69,6 +70,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus(null);
 
     // EmailJS credentials from environment variables
     const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID; 
@@ -82,14 +84,21 @@ const Contact = () => {
         formRef.current,
         PUBLIC_KEY
       );
-      
-      alert("Message sent successfully! I will get back to you soon.");
+
       setForm({ name: "", email: "", message: "" });
+      setSubmitStatus({
+        type: "success",
+        message: "Message sent successfully. I will get back to you soon.",
+      });
     } catch (error) {
       console.error("EmailJS Error:", error);
-      alert("Something went wrong. Please try again or email me directly.");
+      setSubmitStatus({
+        type: "error",
+        message: "Message failed to send. Please try again or email me directly.",
+      });
     } finally {
       setIsSubmitting(false);
+      window.setTimeout(() => setSubmitStatus(null), 4500);
     }
   };
 
@@ -164,7 +173,9 @@ const Contact = () => {
                 {[
                   { icon: Github, label: "GitHub", href: "https://github.com/ometiwari-ai" },
                   { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/ometiwari-ai/" },
-                  { icon: Twitter, label: "Twitter", href: "https://x.com/ometiwari_ai" }
+                  { icon: Twitter, label: "Twitter", href: "https://x.com/ometiwari_ai" },
+                  { icon: Mail, label: "Email", href: "mailto:ometiwari.ai@gmail.com" },
+                  { icon: Code2, label: "LeetCode", href: "https://leetcode.com/u/omtiwari0/" }
                 ].map((social, i) => (
                   <a
                     key={i}
@@ -236,10 +247,31 @@ const Contact = () => {
               >
                 <span className="relative z-10 flex items-center gap-2">
                   {isSubmitting ? "Sending..." : "Send Message"}
-                  <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  {isSubmitting ? (
+                    <LoaderCircle size={18} className="animate-spin" />
+                  ) : (
+                    <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  )}
                 </span> 
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
               </button>
+
+              {submitStatus && (
+                <div
+                  className={`flex items-start gap-3 rounded-2xl border px-4 py-4 transition-all duration-300 ${
+                    submitStatus.type === "success"
+                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
+                      : "border-red-500/30 bg-red-500/10 text-red-300"
+                  }`}
+                >
+                  {submitStatus.type === "success" ? (
+                    <CheckCircle2 size={18} className="mt-0.5 shrink-0" />
+                  ) : (
+                    <AlertCircle size={18} className="mt-0.5 shrink-0" />
+                  )}
+                  <p className="text-sm font-medium leading-relaxed">{submitStatus.message}</p>
+                </div>
+              )}
 
               <div className="flex items-center gap-2 text-zinc-500 text-xs justify-center pt-2">
                 <p>I typically respond within 24-48 hours.</p>

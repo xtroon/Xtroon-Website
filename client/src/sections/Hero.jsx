@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { ArrowDown, Github, Linkedin, Mail, Download, Twitter } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Mail, Download, Twitter, Code2 } from 'lucide-react';
+import resumePdf from '../assets/resume/ometiwari.ai.pdf';
+import heroProfileImg from '../assets/profile/me1.jpeg';
 
 const ROLES = ['Full Stack Developer', 'Competitive Programmer', 'Tech Explorer', 'Problem Solver'];  
 
@@ -145,8 +147,8 @@ const Hero = () => {
             </button>
 
             <a 
-              href="/resume.pdf" 
-              download 
+              href={resumePdf}
+              download="Ome-Tiwari-Resume.pdf"
               className="hero-btns group px-8 py-3 border-2 border-cyan-500/30 text-[var(--text-primary)] font-bold rounded-xl hover:bg-cyan-500/10 hover:border-cyan-500/50 hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 shadow-sm"
             >
               <span>Download CV</span>
@@ -164,6 +166,9 @@ const Hero = () => {
             </a>
             <a href="https://x.com/ometiwari18?s=20" target="_blank" rel="noreferrer" className="hover:text-[var(--text-primary)] transition-colors">
               <Twitter size={20} />
+            </a>
+            <a href="https://leetcode.com/u/omtiwari0/" target="_blank" rel="noreferrer" className="hover:text-[var(--text-primary)] transition-colors" aria-label="LeetCode">
+              <Code2 size={20} />
             </a>
             <a href="mailto:ometiwari.ai@gmail.com" className="hover:text-[var(--text-primary)] transition-colors">
               <Mail size={20} />
@@ -186,7 +191,7 @@ const Hero = () => {
             <div className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full p-2 bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_50px_-12px_rgba(34,211,238,0.3)] overflow-visible">
               <div className="w-full h-full rounded-full overflow-hidden border-2 border-[var(--border-primary)] shadow-inner">
                 <img 
-                  src="/me1.jpeg" 
+                  src={heroProfileImg}
                   alt="Ome Tiwari" 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                 />

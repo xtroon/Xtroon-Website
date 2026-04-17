@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon, Send } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import logoImage from '../assets/logoPortfolio.png';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,7 +52,7 @@ const Navigation = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="cursor-pointer font-extrabold text-2xl md:text-3xl tracking-tighter flex items-center gap-2"
           >
-            <img src="/logoPortfolio.png" alt="Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain border border-[var(--border-primary)] rounded-[12px]" />
+            <img src={logoImage} alt="Logo" className="w-8 h-8 md:w-10 md:h-10 object-contain border border-[var(--border-primary)] rounded-[12px]" />
             <span className="text-[var(--text-primary)]">Ome</span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200"> Tiwari</span>
             <span className="text-blue-500">.</span>
