@@ -56,7 +56,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" ref={sectionRef} className="pt-10 pb-24 md:pt-12 md:pb-32 px-6 bg-[var(--bg-primary)] text-[var(--text-primary)]">
+    <section id="about" ref={sectionRef} className="pt-10 pb-24 md:pt-12 md:pb-32 px-4 sm:px-6 bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <div className="max-w-5xl mx-auto">
         {/* HEADER */}
         <div className="mb-10 fade-up">
@@ -70,7 +70,7 @@ const About = () => {
           {/* TEXT */}
           <div className="text-[var(--text-secondary)] text-center">
             <p className="text-lg md:text-xl leading-relaxed text-[var(--text-primary)] max-w-3xl mx-auto">
-              I’m Om Tiwari, a Computer Science student at MBM University interested in software engineering, AI, and building products that are both functional and polished.
+              I’m Ome Tiwari, a Computer Science student at MBM University interested in software engineering, AI, and building products that are both functional and polished.
               I enjoy creating projects across web development and AI — from full-stack applications to experimental tools and interfaces. Outside of coding, I also work on content creation through my YouTube channel.
               My focus is on continuously improving as an engineer while combining technology and creativity to build impactful digital experiences.
             </p>

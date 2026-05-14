@@ -28,7 +28,7 @@ const Footer = () => {
           </p>
 
           {/* Social Links */}
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
             {socials.map((social, i) => (
               <a
                 key={i}

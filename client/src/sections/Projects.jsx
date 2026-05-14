@@ -119,7 +119,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" ref={sectionRef} className="py-24 px-6 bg-[var(--bg-primary)] text-[var(--text-primary)]">
+    <section id="projects" ref={sectionRef} className="py-24 px-4 sm:px-6 bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <div className="max-w-6xl mx-auto">
         
         {/* HEADER */}

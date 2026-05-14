@@ -66,7 +66,7 @@ const Hero = () => {
   };
 
   return (
-    <section ref={heroRef} className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden bg-[var(--bg-primary)]">
+    <section ref={heroRef} className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden bg-[var(--bg-primary)]">
 
       <div className="section-padding relative z-10 w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 py-10 md:py-16">
 
@@ -99,7 +99,7 @@ const Hero = () => {
           </div>
 
           {/* 3. NAME */}
-          <p className="text-4xl sm:text-5xl md:text-6xl text-blue-500 h-12 mb-6 font-bold">
+          <p className="text-4xl sm:text-5xl md:text-6xl text-blue-500 min-h-[3rem] mb-6 font-bold">
             Ome Tiwari
           </p>
 
@@ -142,8 +142,8 @@ const Hero = () => {
 
       {/* RESUME OVERLAY */}
       {isResumeOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-10">
-          <div className="relative w-full h-full max-w-5xl bg-[var(--bg-secondary)] rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-2 sm:p-4 md:p-10">
+          <div className="relative w-full h-full max-w-5xl bg-[var(--bg-secondary)] rounded-xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col">
             
             <div className="p-4 border-b border-[var(--border-primary)] flex items-center justify-between bg-[var(--bg-primary)]">
               <h3 className="font-bold text-lg hidden md:block">Ome Tiwari - Resume</h3>
@@ -175,11 +175,6 @@ const Hero = () => {
           </div>
         </div>
       )}
-
-      {/* Scroll */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-        <ArrowDown onClick={goToAbout} className="text-[var(--text-muted)] cursor-pointer animate-bounce" />
-      </div>
 
     </section>
   );

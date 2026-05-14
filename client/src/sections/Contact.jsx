@@ -120,7 +120,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" ref={sectionRef} className="py-24 px-6 bg-[var(--bg-primary)] text-[var(--text-primary)]">
+    <section id="contact" ref={sectionRef} className="py-24 px-4 sm:px-6 bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <div className="max-w-6xl mx-auto py-10">
 
         {/* HEADER */}

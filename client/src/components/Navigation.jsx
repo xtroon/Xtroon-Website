@@ -37,15 +37,14 @@ const Navigation = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'py-3 backdrop-blur-lg border-b'
-            : 'py-5 bg-transparent'
+            ? 'py-3 backdrop-blur-lg border-b bg-[rgba(var(--bg-primary-rgb),0.8)]'
+            : 'py-5 backdrop-blur-md lg:backdrop-blur-none bg-[rgba(var(--bg-primary-rgb),0.6)] lg:bg-transparent'
         }`}
         style={{ 
           borderColor: isScrolled ? 'var(--border-primary)' : 'transparent',
-          backgroundColor: isScrolled ? 'rgba(var(--bg-primary-rgb), 0.8)' : 'transparent'
         }}
       >
-        <div className="max-w-[90rem] mx-auto px-6 md:px-10 flex items-center justify-between">
+        <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-10 flex items-center justify-between">
 
           {/* LOGO */}
           <Link
@@ -60,15 +59,15 @@ const Navigation = () => {
               />
             </div>
             <div className="px-3 py-1.5 rounded-xl transition-all duration-300 group-hover:bg-blue-500/5 flex items-center">
-              <span className="text-[var(--text-primary)] font-extrabold text-2xl md:text-3xl tracking-tighter group-hover:text-blue-500 transition-colors">
+              <span className="text-[var(--text-primary)] font-extrabold text-xl sm:text-2xl md:text-3xl tracking-tighter group-hover:text-blue-500 transition-colors">
                 Xtroon
               </span>
-              <span className="text-blue-500 font-extrabold text-2xl md:text-3xl">.</span>
+              <span className="text-blue-500 font-extrabold text-xl sm:text-2xl md:text-3xl">.</span>
             </div>
           </Link>
 
           {/* DESKTOP NAV */}
-          <div className="hidden lg:flex items-center gap-10 text-sm text-[var(--text-secondary)]">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-10 text-sm text-[var(--text-secondary)]">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -109,24 +108,26 @@ const Navigation = () => {
 
       {/* MOBILE MENU */}
       <div
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-[var(--bg-primary)] transition-all duration-300 ${
-          isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-6 bg-[var(--bg-primary)]/95 backdrop-blur-xl transition-all duration-500 ${
+          isMobileMenuOpen ? 'translate-y-0 opacity-100 visible' : '-translate-y-full opacity-0 invisible'
         }`}
       >
-        {navLinks.map((link) => (
-          <Link
-            key={link.name}
-            to={link.path}
-            className={`text-3xl font-extrabold transition-all uppercase tracking-tighter relative group py-2 cursor-pointer ${
-              location.pathname === link.path ? 'text-blue-400' : 'text-[var(--text-primary)]'
-            }`}
-          >
-            {link.name}
-            <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-blue-500 transition-all duration-300 ${
-              location.pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'
-            }`} />
-          </Link>
-        ))}
+        <div className="flex flex-col items-center gap-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              className={`text-2xl sm:text-3xl font-extrabold transition-all uppercase tracking-tighter relative group py-2 cursor-pointer ${
+                location.pathname === link.path ? 'text-blue-400' : 'text-[var(--text-primary)]'
+              }`}
+            >
+              {link.name}
+              <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[3px] bg-blue-500 transition-all duration-300 ${
+                location.pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'
+              }`} />
+            </Link>
+          ))}
+        </div>
       </div>
     </>
   );
