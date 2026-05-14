@@ -7,7 +7,7 @@
   --bg-secondary-rgb: 249, 250, 251;
   --text-primary: #111827;
   --text-secondary: #4b5563;
-  --text-muted: #9ca3af;
+  --text-muted: #6b7280;
   --border-primary: #e5e7eb;
   --card-bg: #ffffff;
   --card-border: #f3f4f6;
@@ -18,16 +18,16 @@
 }
 
 [data-theme="dark"] {
-  --bg-primary: #030303;
-  --bg-primary-rgb: 3, 3, 3;
-  --bg-secondary: #0a0a0a;
-  --bg-secondary-rgb: 10, 10, 10;
+  --bg-primary: #121212; /* Professional Grey-Black */
+  --bg-primary-rgb: 18, 18, 18;
+  --bg-secondary: #1e1e1e;
+  --bg-secondary-rgb: 30, 30, 30;
   --text-primary: #f9fafb;
   --text-secondary: #d1d5db;
-  --text-muted: #6b7280;
-  --border-primary: #1f2937;
-  --card-bg: #09090b;
-  --card-border: #18181b;
+  --text-muted: #9ca3af;
+  --border-primary: #2d2d2d;
+  --card-bg: #1a1a1a;
+  --card-border: #262626;
   --accent-blue: #3b82f6;
   --accent-cyan: #22d3ee;
   --glow-color: rgba(59, 130, 246, 0.1);
@@ -46,11 +46,10 @@ body {
   margin: 0;
   color: var(--text-primary);
   background-color: var(--bg-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.01em;
 }
-
-
 
 .noise-overlay {
   position: fixed;
@@ -60,7 +59,7 @@ body {
   height: 100%;
   pointer-events: none;
   background-image: 
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
   z-index: -1;
 }
 
@@ -106,8 +105,4 @@ body {
 
 .animate-shimmer {
   animation: shimmer 1.5s infinite;
-}
-@keyframes scan {
-  0% { top: 0; }
-  100% { top: 100%; }
 }

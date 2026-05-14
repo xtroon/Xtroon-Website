@@ -1,7 +1,12 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Code2, Monitor, Server, Brain, Zap, BookOpen, Database } from "lucide-react";
+import { 
+  SiPython, SiCplusplus, SiJavascript, SiReact, SiNextdotjs, 
+  SiTailwindcss, SiNodedotjs, SiMongodb, SiPostgresql, SiGit,
+  SiDjango, SiC, SiExpress, SiGithub, SiVercel, SiPostman
+} from "react-icons/si";
+import { FaHtml5, FaCss3Alt } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,7 +15,6 @@ const Skills = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header Animation
       gsap.from(".reveal-header", {
         y: 30,
         opacity: 0,
@@ -23,185 +27,79 @@ const Skills = () => {
         }
       });
 
-      // Individual Card Animation for better visibility
-      const cards = document.querySelectorAll('.reveal-card');
-      cards.forEach((card) => {
-        gsap.from(card, {
-          y: 40,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 92%",
-            toggleActions: "play none none reverse",
-          }
-        });
-      });
-
-      // Progress Bar Animation
-      const bars = document.querySelectorAll('.skill-progress');
-      bars.forEach((bar) => {
-        gsap.to(bar, {
-          width: bar.getAttribute('data-width') || '0%',
-          duration: 1.5,
-          ease: "expo.out",
-          scrollTrigger: {
-            trigger: bar,
-            start: "top 95%",
-          },
-        });
+      gsap.from(".skill-icon-box", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: ".skills-grid",
+          start: "top 85%",
+        }
       });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  const skillGroups = [
-    {
-      title: "Languages",
-      icon: Code2,
-      items: ["Python", "C", "C++", "JavaScript (ES6)", "SQL"],
-    },
-    {
-      title: "Frontend",
-      icon: Monitor,
-      items: ["React.js", "Next.js", "Tailwind CSS", "HTML", "CSS"],
-    },
-    {
-      title: "Backend",
-      icon: Server,
-      items: ["Node.js", "Express.js", "Django", "REST APIs"],
-    },
-    {
-      title: "Databases & Tools",
-      icon: Database,
-      items: ["MongoDB", "PostgreSQL", "Git", "GitHub", "Postman", "Vercel", "Render"],
-    },
-    {
-      title: "Core Concepts",
-      icon: Brain,
-      items: ["Data Structures & Algorithms", "OOP", "Problem Solving"],
-    },
-    {
-      title: "Data / AI",
-      icon: Zap,
-      items: ["NumPy", "Pandas", "Basic Data Analysis", "Automation"],
-    },
-  ];
-
-  const core = [
-  { name: "Python", level: 80 },
-  { name: "Full-Stack (React/Node)", level: 80 },
-  { name: "C++ (DSA)", level: 75 },
-  { name: "Backend Development", level: 75 },
-  { name: "Data Analysis (NumPy/Pandas)", level: 70 },
-  ];
-
-  const academics = [
-    "Data Structures & Algorithms", "Database Management System", "Computer Networks", 
-    "Object Oriented Programming", "Software Engineering", "Computer Organization & Architecture",
+  const techStack = [
+    { name: "C", icon: SiC, color: "#A8B9CC" },
+    { name: "C++", icon: SiCplusplus, color: "#00599C" },
+    { name: "Python", icon: SiPython, color: "#3776AB" },
+    { name: "HTML5", icon: FaHtml5, color: "#E34F26" },
+    { name: "CSS3", icon: FaCss3Alt, color: "#1572B6" },
+    { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+    { name: "Tailwind", icon: SiTailwindcss, color: "#06B6D4" },
+    { name: "React", icon: SiReact, color: "#61DAFB" },
+    { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+    { name: "Express", icon: SiExpress, color: "#FFFFFF" },
+    { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF" },
+    { name: "Django", icon: SiDjango, color: "#092E20" },
+    { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+    { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+    { name: "Git", icon: SiGit, color: "#F05032" },
+    { name: "GitHub", icon: SiGithub, color: "#FFFFFF" },
+    { name: "Postman", icon: SiPostman, color: "#FF6C37" },
+    { name: "Vercel", icon: SiVercel, color: "#FFFFFF" },
   ];
 
   return (
-    <section id="skills" ref={sectionRef} className="section-spacing px-6 bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300 overflow-hidden relative">
+    <section id="skills" ref={sectionRef} className="py-8 px-6 bg-[var(--bg-primary)] text-[var(--text-primary)] relative overflow-hidden">
       
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/5 blur-[100px] rounded-full pointer-events-none" />
 
-      <div className="section-padding relative">
-
+      <div className="max-w-5xl mx-auto relative">
         {/* Header Section */}
-        <div className="mb-20 skills-header text-center">
-          <p className="reveal-header text-sm text-blue-500 font-bold uppercase tracking-[0.2em] mb-4">
-            Technical Stack
-          </p>
-          <h2 className="reveal-header text-4xl md:text-6xl font-extrabold text-[var(--text-primary)] tracking-tight mb-6 transition-colors font-sans">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Arsenal</span>
-          </h2>
-          <p className="reveal-header text-[var(--text-secondary)] text-lg max-w-2xl mx-auto font-medium leading-relaxed transition-colors">
-            A specialized collection of tools and technologies I use to build scalable, high-performance applications and AI systems.
+        <div className="mb-16 skills-header text-center">
+          <p className="reveal-header text-[25px] text-xs text-blue-500 font-bold uppercase tracking-[0.3em] mb-1">
+            Tech Stack
           </p>
         </div>
 
-        {/* Skill Categories Grid */}
-        <div className="grid sm:grid-cols-2 gap-6 mb-12">
-          {skillGroups.map((group, i) => (
-            <div key={i} className="reveal-card group bg-[var(--bg-secondary)] backdrop-blur-md border border-[var(--border-primary)] rounded-2xl p-8 hover:border-blue-500/40 transition-all duration-500 shadow-sm">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 flex items-center justify-center bg-blue-500/10 text-blue-400 rounded-xl group-hover:bg-blue-500 group-hover:text-white transition-all shadow-lg shadow-blue-500/5">
-                  <group.icon size={22} />
-                </div>
-                <h3 className="text-2xl font-bold tracking-tight text-[var(--text-primary)] group-hover:text-blue-400 transition-colors">
-                  {group.title}
-                </h3>
+        {/* Skills Grid */}
+        <div className="skills-grid flex flex-wrap justify-center gap-5 md:gap-0">
+          {techStack.map((tech, i) => (
+            <div 
+              key={i} 
+              className="skill-icon-box group relative flex flex-col items-center"
+              style={{ "--tech-color": tech.color }}
+            >
+              <div className="relative p-4 md:p-6 transition-all duration-300 transform group-hover:scale-110">
+                <tech.icon 
+                  size={40} 
+                  className="transition-all duration-500 text-gray-500/50 group-hover:text-[var(--tech-color)] group-hover:opacity-100"
+                />
               </div>
-
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((item, index) => (
-                  <span
-                    key={index}
-                    className="px-4 py-1.5 text-sm bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg text-[var(--text-secondary)] font-bold hover:text-blue-500 hover:border-blue-500/50 transition-all cursor-default shadow-sm"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
+              
+              {/* Tooltip Name */}
+              <span className="absolute -bottom-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-[10px] md:text-xs font-bold uppercase tracking-widest text-blue-500 whitespace-nowrap">
+                {tech.name}
+              </span>
             </div>
           ))}
         </div>
-
-        {/* Academic Coursework Section - Solid Background for High Visibility */}
-        <div className="reveal-card group bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-2xl p-8 mb-16 hover:border-blue-500/40 transition-all duration-500 relative shadow-sm">
-          <div className="flex items-center gap-4 mb-10">
-            <div className="w-12 h-12 flex items-center justify-center bg-blue-500/10 text-blue-400 rounded-xl group-hover:bg-blue-500 group-hover:text-white transition-all">
-              <BookOpen size={22} />
-            </div>
-            <h3 className="text-2xl font-bold tracking-tight text-[var(--text-primary)] group-hover:text-blue-400 transition-colors uppercase">
-              Academic Coursework
-            </h3>
-          </div>
-          <div className="flex flex-wrap gap-2 sm:gap-3">
-            {academics.map((subject, index) => (
-              <span
-                key={index}
-                className="px-3 py-1.5 sm:px-5 sm:py-2 text-[11px] sm:text-sm bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-lg sm:rounded-xl text-[var(--text-secondary)] font-bold hover:bg-blue-500/10 hover:text-blue-400 hover:border-blue-500/50 transition-all cursor-default shadow-sm"
-              >
-                {subject}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Core Competencies Section */}
-        <div className="reveal-card bg-[var(--bg-secondary)] backdrop-blur-md border border-[var(--border-primary)] rounded-3xl p-8 md:p-12 shadow-lg">
-          <div className="flex items-center gap-4 mb-10 justify-center">
-            <Zap className="text-blue-500" size={24} />
-            <h3 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] tracking-tight leading-none text-center">
-              Core Competencies
-            </h3>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-x-16 gap-y-10">
-            {core.map((skill, i) => (
-              <div key={i} className="space-y-4">
-                <div className="flex justify-between items-end">
-                  <span className="text-lg font-bold text-[var(--text-primary)]">{skill.name}</span>
-                  <span className="text-blue-500 font-bold font-mono text-lg">{skill.level}%</span>
-                </div>
-
-                <div className="w-full h-2 bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-full overflow-hidden">
-                  <div
-                    className="skill-progress h-full bg-gradient-to-r from-blue-600 to-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.3)] rounded-full w-0"
-                    data-width={`${skill.level}%`}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Achievements & Ranks */}
       </div>
     </section>
   );

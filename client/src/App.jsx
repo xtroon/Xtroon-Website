@@ -1,27 +1,47 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Experience from './sections/Experience';
 import Projects from './sections/Projects';
-import Skills from './sections/Skills';
-import Achievements from './sections/Achievements';
 import Contact from './sections/Contact';
-import Navigation from './components/navigation';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Scroll to top and update title on route change
+function PageManager() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    // Dynamic Titles
+    const titles = {
+      '/': 'Xtroon-Portfolio | About & Projects',
+      '/about': 'About | Xtroon-Portfolio',
+      '/experience': 'Experience | Xtroon-Portfolio',
+      '/projects': 'Projects | Xtroon-Portfolio',
+      '/contact': 'Contact | Xtroon-Portfolio',
+    };
+
+    document.title = titles[pathname] || 'Ome Tiwari | Portfolio';
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   const mainRef = useRef(null);
 
   useEffect(() => {
-    // Initialize smooth scroll behavior
     const ctx = gsap.context(() => {
-      // Reveal animations for sections
       const revealElements = document.querySelectorAll('.reveal');
-      
+
       revealElements.forEach((element) => {
         gsap.fromTo(
           element,
@@ -46,34 +66,23 @@ function App() {
 
   return (
     <ThemeProvider>
+      <PageManager />
       <div ref={mainRef} className="relative min-h-screen transition-colors duration-300">
-        {/* Noise overlay */}
         <div className="noise-overlay" />
-        
-        {/* Navigation */}
+
         <Navigation />
-        
-        {/* Main content */}
-        <main>
-          <Hero />
-          <About />
-          <Experience />
-          <Projects />
-          <Skills />
-          <Achievements />
-          <Contact />
+
+        <main className="pt-20">
+          <Routes>
+            <Route path="/" element={<Hero />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
         </main>
-        
-        {/* Footer */}
-        <footer className="py-8 border-t transition-colors duration-300 bg-[var(--bg-primary)]" style={{ borderColor: 'var(--border-primary)' }}>
-          <div className="section-padding">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-sm text-center md:text-left text-[var(--text-muted)]">
-                © 2026 Ome Tiwari. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </footer>
+
+        <Footer />
       </div>
     </ThemeProvider>
   );

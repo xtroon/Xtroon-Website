@@ -24,7 +24,6 @@ const Contact = () => {
       gsap.from(".contact-header > *", {
         y: 30,
         opacity: 0,
-        filter: "blur(10px)",
         duration: 1,
         stagger: 0.2,
         ease: "power4.out",
@@ -72,7 +71,6 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // EmailJS credentials from environment variables
     const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID; 
     const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -122,53 +120,48 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" ref={sectionRef} className="relative section-spacing px-6 bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300 overflow-hidden">
-      
-      {/* Background Accents */}
-      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
-
-      <div className="section-padding relative z-10">
+    <section id="contact" ref={sectionRef} className="py-24 px-6 bg-[var(--bg-primary)] text-[var(--text-primary)]">
+      <div className="max-w-6xl mx-auto py-10">
 
         {/* HEADER */}
-        <div className="mb-20 contact-header text-center">
-          <p className="text-sm text-blue-500 font-bold uppercase tracking-[0.2em] mb-4">
-            Get In Touch
+        <div className="mb-20 contact-header">
+          <p className="text-xs text-blue-500 uppercase tracking-[0.3em] font-bold mb-4">
+            Connect
           </p>
-          <h2 className="text-4xl md:text-6xl font-extrabold text-[var(--text-primary)] tracking-tight">
-            Let's Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Something Great.</span>
+          <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
+            Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Talk</span>.
           </h2>
-          <p className="text-[var(--text-secondary)] mt-6 max-w-xl mx-auto text-lg font-medium leading-relaxed">
+          <p className="text-[var(--text-secondary)] mt-8 max-w-xl text-lg font-medium leading-relaxed">
             I'm currently looking for new opportunities and collaborations. Whether you have a question or just want to say hi, I'll try my best to get back to you!
           </p>
         </div>
 
         <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-24">
 
-          {/* LEFT COLUMN: Info & Socials */}
-          <div className="space-y-10">
+          {/* LEFT */}
+          <div className="space-y-12">
             <div className="space-y-8">
               {contactInfo.map((info, i) => (
-                <div key={i} className="contact-info-item group flex items-start gap-4 sm:gap-6">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-xl group-hover:border-blue-500/50 group-hover:bg-blue-500/10 transition-all duration-300 shadow-sm">
-                    <info.icon size={18} className="text-blue-400 group-hover:scale-110 transition-transform" />
+                <div key={i} className="contact-info-item group flex items-start gap-6">
+                  <div className="w-12 h-12 shrink-0 flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-2xl group-hover:border-blue-500/50 transition-all duration-300">
+                    <info.icon size={18} className="text-blue-500" />
                   </div>
-                  <div className="min-w-0">
+                  <div>
                     <p className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest mb-1">{info.label}</p>
                     {info.link ? (
-                       <a href={info.link} className="text-base sm:text-lg font-bold text-[var(--text-primary)] hover:text-blue-400 transition-colors break-words">
+                       <a href={info.link} className="text-lg font-bold hover:text-blue-500 transition-colors break-words">
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-base sm:text-lg font-bold text-[var(--text-primary)]">{info.value}</p>
+                      <p className="text-lg font-bold">{info.value}</p>
                     )}
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Social Links Card */}
-            <div className="contact-info-item p-8 bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--border-primary)] rounded-[2rem] space-y-6 shadow-sm">
-              <p className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest">Connect with me</p>
+            <div className="contact-info-item p-10 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[2.5rem] space-y-8">
+              <p className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest">Socials</p>
               <div className="flex flex-wrap gap-4">
                 {[
                   { icon: Github, label: "GitHub", href: "https://github.com/ometiwari-ai" },
@@ -182,7 +175,7 @@ const Contact = () => {
                     href={social.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-12 h-12 flex items-center justify-center bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-xl text-[var(--text-primary)] hover:bg-blue-600 hover:text-white hover:border-blue-400 hover:-translate-y-1 transition-all shadow-sm"
+                    className="w-12 h-12 flex items-center justify-center bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-xl text-[var(--text-primary)] hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all shadow-sm"
                     aria-label={social.label}
                   >
                     <social.icon size={20} />
@@ -192,68 +185,59 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Form */}
-          <div className="contact-form relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/10 to-transparent blur-2xl opacity-50 rounded-full pointer-events-none" />
-            
-            <form ref={formRef} onSubmit={handleSubmit} className="relative bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--border-primary)] p-6 md:p-12 rounded-[2rem] md:rounded-[2.5rem] space-y-6 shadow-xl">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Your Name</label>
+          {/* RIGHT */}
+          <div className="contact-form">
+            <form ref={formRef} onSubmit={handleSubmit} className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] p-8 md:p-12 rounded-[2.5rem] space-y-8 shadow-2xl">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <label htmlFor="name" className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Name</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     required
-                    placeholder="Ome Tiwari"
+                    placeholder="Xtroon"
                     value={form.name}
                     onChange={handleChange}
-                    className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none px-6 py-4 rounded-2xl text-[var(--text-primary)] transition-all shadow-inner"
+                    className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 outline-none px-6 py-4 rounded-2xl text-[var(--text-primary)] transition-all"
                   />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Email Address</label>
+                <div className="space-y-3">
+                  <label htmlFor="email" className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Email</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     required
-                    placeholder="name@example.com"
+                    placeholder="hello@xtroon.ai"
                     value={form.email}
                     onChange={handleChange}
-                    className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none px-6 py-4 rounded-2xl text-[var(--text-primary)] transition-all shadow-inner"
+                    className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 outline-none px-6 py-4 rounded-2xl text-[var(--text-primary)] transition-all"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Message</label>
+              <div className="space-y-3">
+                <label htmlFor="message" className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Message</label>
                 <textarea
                   id="message"
                   name="message"
                   required
-                  placeholder="Hey, let's collaborate on..."
+                  placeholder="How can I help?"
                   rows={5}
                   value={form.message}
                   onChange={handleChange}
-                  className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none px-6 py-4 rounded-2xl text-[var(--text-primary)] transition-all resize-none shadow-inner"
+                  className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 outline-none px-6 py-4 rounded-2xl text-[var(--text-primary)] transition-all resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-5 rounded-2xl transition-all flex items-center justify-center gap-3 group relative overflow-hidden disabled:opacity-50"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-5 rounded-2xl transition-all flex items-center justify-center gap-3 group disabled:opacity-50"
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                  {isSubmitting ? (
-                    <LoaderCircle size={18} className="animate-spin" />
-                  ) : (
-                    <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  )}
-                </span> 
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                {isSubmitting ? "Sending..." : "Send Message"}
+                <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
 
               {submitStatus && (
@@ -273,15 +257,14 @@ const Contact = () => {
                 </div>
               )}
 
-              <div className="flex items-center gap-2 text-zinc-500 text-xs justify-center pt-2">
-                <p>I typically respond within 24-48 hours.</p>
+              <div className="flex items-center gap-2 text-zinc-500 text-[10px] justify-center pt-2">
+                <p>Typical response: 24-48 hours</p>
                 <ArrowRight size={12} className="text-blue-500" />
               </div>
             </form>
           </div>
 
         </div>
-
       </div>
     </section>
   );
