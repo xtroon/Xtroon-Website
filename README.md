@@ -21,11 +21,32 @@ A premium, minimalist, and theme-aware portfolio built with **React**, **Tailwin
 - **Premium Navigation**: Glassmorphic navbar with active link indicators and a logo hover effect.
 - **Fully Responsive**: Interleaved Hero section on mobile for optimal reading flow.
 
+## 📈 Insights & Analytics
+- **Coding Activity**: Tracked via [WakaTime](https://wakatime.com/) to showcase consistency and focus.
+- **Visitor Counter**: Dynamic profile visitor tracking to monitor portfolio engagement.
+- **GitHub Stats**: Real-time repository metrics and contribution tracking.
+
+## ✅ Project Roadmap & Todo
+### Completed
+- [x] **Hero Restructure**: Interleaved greeting and image on mobile.
+- [x] **Resume Overlay**: Implement in-page CV viewing modal.
+- [x] **Tech Stack**: Switched to brand-accurate icons with hover effects.
+- [x] **Dynamic Titles**: Page-specific document titles for better UX.
+- [x] **Footer Evolution**: Centralized social hub with "Find me here" label.
+
+### In Progress / Upcoming
+- [ ] **Organized Experience**: Implement a multi-category timeline (Professional, Leadership, Learning).
+- [ ] **SEO Optimization**: Finalize meta tags, JSON-LD, and open graph images for maximum reach.
+- [ ] **Blogs & Posts**: Integrate a minimalist markdown-based blogging system.
+- [ ] **Projects Gallery**: Add high-fidelity case studies and interactive demo links.
+- [ ] **Contact System**: Connect the frontend to a serverless backend for automated inquiries.
+- [ ] **Performance**: Achieve 90+ Lighthouse scores across all metrics.
+
 ## 📦 Installation
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/xtroon/xtroon-portfolio.git
+   git clone https://github.com/xtroon/Ome-Tiwari-Portfolio.git
    ```
 
 2. **Navigate to the client directory**:
@@ -42,16 +63,6 @@ A premium, minimalist, and theme-aware portfolio built with **React**, **Tailwin
    ```bash
    npm run dev
    ```
-
-## ✅ Todo List
-- [ ] **Projects Section**: Add more detailed project case studies.
-- [ ] **Blog**: Implement a minimalist MDX-based blog section.
-- [ ] **Animations**: Add subtle reveal animations to the Achievements and Footer.
-- [ ] **SEO**: Finalize meta tags and open graph images for better social sharing.
-- [ ] **Contact Form**: Connect the contact section to a backend or EmailJS.
-- [x] **Hero Restructure**: Interleave greeting and image on mobile.
-- [x] **Resume Overlay**: Implement in-page CV viewing.
-- [x] **Tech Stack**: Switch to brand-accurate icons with hover effects.
 
 ## 📄 License
 This project is licensed under the MIT License.
