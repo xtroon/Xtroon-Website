@@ -71,7 +71,7 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID; 
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
@@ -100,97 +100,27 @@ const Contact = () => {
     }
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: "ometiwari.ai@gmail.com",
-      link: "mailto:ometiwari.ai@gmail.com"
-    },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: "Rajasthan, India",
-    },
-    {
-      icon: Laptop,
-      label: "Current Focus",
-      value: "AI + Full Stack Engineering",
-    }
-  ];
-
   return (
-    <section id="contact" ref={sectionRef} className="py-24 px-4 sm:px-6 bg-[var(--bg-primary)] text-[var(--text-primary)]">
-      <div className="max-w-6xl mx-auto py-10">
+    <section id="contact" ref={sectionRef} className="pt-10 pb-24 md:pt-12 md:pb-32 px-4 sm:px-6 bg-[var(--bg-primary)] text-[var(--text-primary)]">
+      <div className="max-w-6xl mx-auto pb-10">
 
         {/* HEADER */}
-        <div className="mb-20 contact-header">
-          <p className="text-xs text-blue-500 uppercase tracking-[0.3em] font-bold mb-4">
-            Connect
-          </p>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-            Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Talk</span>.
+        <div className="mb-16 contact-header flex flex-col items-center text-center">
+          <h2 className="text-3xl md:text-5xl text-blue-500 font-semibold tracking-tight">
+            Let’s Connect
           </h2>
-          <p className="text-[var(--text-secondary)] mt-8 max-w-xl text-lg font-medium leading-relaxed">
-            I'm currently looking for new opportunities and collaborations. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+          <p className="text-[var(--text-secondary)] mt-4 max-w-xl text-base font-medium">
+            Have an idea, opportunity, or project in mind? Feel free to reach out.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-24">
+        <div className="flex flex-col items-center gap-8 max-w-2xl mx-auto w-full">
 
-          {/* LEFT */}
-          <div className="space-y-12">
-            <div className="space-y-8">
-              {contactInfo.map((info, i) => (
-                <div key={i} className="contact-info-item group flex items-start gap-6">
-                  <div className="w-12 h-12 shrink-0 flex items-center justify-center bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-2xl group-hover:border-blue-500/50 transition-all duration-300">
-                    <info.icon size={18} className="text-blue-500" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest mb-1">{info.label}</p>
-                    {info.link ? (
-                       <a href={info.link} className="text-lg font-bold hover:text-blue-500 transition-colors break-words">
-                        {info.value}
-                      </a>
-                    ) : (
-                      <p className="text-lg font-bold">{info.value}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="contact-info-item p-10 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded-[2.5rem] space-y-8">
-              <p className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-widest">Socials</p>
-              <div className="flex flex-wrap gap-4">
-                {[
-                  { icon: Github, label: "GitHub", href: "https://github.com/ometiwari-ai" },
-                  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/ometiwari-ai/" },
-                  { icon: Twitter, label: "Twitter", href: "https://x.com/ometiwari_ai" },
-                  { icon: Mail, label: "Email", href: "mailto:ometiwari.ai@gmail.com" },
-                  { icon: Code2, label: "LeetCode", href: "https://leetcode.com/u/omtiwari0/" }
-                ].map((social, i) => (
-                  <a
-                    key={i}
-                    href={social.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="w-12 h-12 flex items-center justify-center bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-xl text-[var(--text-primary)] hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all shadow-sm"
-                    aria-label={social.label}
-                  >
-                    <social.icon size={20} />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT */}
-          <div className="contact-form">
-            <form ref={formRef} onSubmit={handleSubmit} className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] p-8 md:p-12 rounded-[2.5rem] space-y-8 shadow-2xl">
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-3">
-                  <label htmlFor="name" className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Name</label>
+          <div className="contact-form w-full">
+            <form ref={formRef} onSubmit={handleSubmit} className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] p-6 md:p-8 rounded-2xl space-y-5 shadow-sm">
+              <div className="grid md:grid-cols-2 gap-5">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-xs font-bold text-[var(--text-secondary)] ml-1">Name</label>
                   <input
                     type="text"
                     id="name"
@@ -199,54 +129,63 @@ const Contact = () => {
                     placeholder="Xtroon"
                     value={form.name}
                     onChange={handleChange}
-                    className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 outline-none px-6 py-4 rounded-2xl text-[var(--text-primary)] transition-all"
+                    className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 outline-none px-4 py-3 rounded-xl text-[var(--text-primary)] transition-all"
                   />
                 </div>
-                <div className="space-y-3">
-                  <label htmlFor="email" className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Email</label>
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-xs font-bold text-[var(--text-secondary)] ml-1">Email</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     required
-                    placeholder="hello@xtroon.ai"
+                    placeholder="xtroon@email.ai"
                     value={form.email}
                     onChange={handleChange}
-                    className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 outline-none px-6 py-4 rounded-2xl text-[var(--text-primary)] transition-all"
+                    className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 outline-none px-4 py-3 rounded-xl text-[var(--text-primary)] transition-all"
                   />
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <label htmlFor="message" className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest ml-1">Message</label>
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-xs font-bold text-[var(--text-secondary)] ml-1">Message</label>
                 <textarea
                   id="message"
                   name="message"
                   required
-                  placeholder="How can I help?"
-                  rows={5}
+                  placeholder="Connect with Xtroon!"
+                  rows={4}
                   value={form.message}
                   onChange={handleChange}
-                  className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 outline-none px-6 py-4 rounded-2xl text-[var(--text-primary)] transition-all resize-none"
+                  className="w-full bg-[var(--bg-primary)] border border-[var(--border-primary)] focus:border-blue-500 outline-none px-4 py-3 rounded-xl text-[var(--text-primary)] transition-all resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-5 rounded-2xl transition-all flex items-center justify-center gap-3 group disabled:opacity-50"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 group disabled:opacity-50"
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
-                <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
+
+              <a
+                href="mailto:ometiwari.ai@gmail.com"
+                className="flex items-center justify-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors group py-2"
+              >
+                <Mail className="text-blue-500 group-hover:scale-110 transition-transform" size={18} />
+                <span className="text-sm font-medium">
+                  Or email directly at <span className="font-bold text-blue-500 underline underline-offset-4">ometiwari.ai@gmail.com</span>
+                </span>
+              </a>
 
               {submitStatus && (
                 <div
-                  className={`flex items-start gap-3 rounded-2xl border px-4 py-4 transition-all duration-300 ${
-                    submitStatus.type === "success"
-                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-300"
-                      : "border-red-500/30 bg-red-500/10 text-red-300"
-                  }`}
+                  className={`flex items-start gap-3 rounded-xl border px-4 py-3 transition-all duration-300 ${submitStatus.type === "success"
+                      ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-500"
+                      : "border-red-500/30 bg-red-500/10 text-red-500"
+                    }`}
                 >
                   {submitStatus.type === "success" ? (
                     <CheckCircle2 size={18} className="mt-0.5 shrink-0" />
@@ -256,17 +195,11 @@ const Contact = () => {
                   <p className="text-sm font-medium leading-relaxed">{submitStatus.message}</p>
                 </div>
               )}
-
-              <div className="flex items-center gap-2 text-zinc-500 text-[10px] justify-center pt-2">
-                <p>Typical response: 24-48 hours</p>
-                <ArrowRight size={12} className="text-blue-500" />
-              </div>
             </form>
           </div>
-
         </div>
-      </div>
-    </section>
+      </div >
+    </section >
   );
 };
 

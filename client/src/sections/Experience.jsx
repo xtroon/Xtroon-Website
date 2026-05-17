@@ -1,47 +1,6 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Briefcase, Trophy, Code, Users, Youtube } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const Experience = () => {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".exp-header > *", {
-        y: 30,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: ".exp-header",
-          start: "top 90%",
-        }
-      });
-
-      gsap.utils.toArray('.exp-card').forEach((el) => {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 85%",
-            },
-          }
-        );
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   const categories = [
     {
@@ -55,7 +14,6 @@ const Experience = () => {
           period: 'Nov 2025 - Feb 2026',
           description: [
             'Developed on full-stack e-commerce platform with automated inventory for 100+ products.',
-            'Collaborated with developers to understand production-level workflows.',
             'Improved frontend and backend integration while debugging real issues.',
           ],
           skills: ['React', 'NextJS', 'Express', 'NodeJS', 'MySQL'],
@@ -68,7 +26,6 @@ const Experience = () => {
           description: [
             'Contributed to an automated product publishing pipeline for an international dropshipping store.',
             'Reduced manual listing effort by approximately 60% through process automation.',
-            'Learned practical development practices and project structuring.',
           ],
           skills: ['Nodejs', 'JavaScript', 'excel'],
         },
@@ -79,28 +36,26 @@ const Experience = () => {
       id: "leadership",
       items: [
         {
+          icon: Trophy,
+          title: 'Core Lead & NEC Finalist (IITB)',
+          company: 'EIC - Entrepreneurship Cell',
+          period: 'Aug 2025 - Present',
+          description: [
+            'Led initiatives as a core member of the Entrepreneurship Cell (EIC).',
+            'Achieved All India Rank (AIR) 34 at National Engineering Challenge Finalist at IIT Bombay.',
+          ],
+          skills: ['Leadership', 'Strategic Planning', 'Public Speaking'],
+        },
+        {
           icon: Users,
           title: 'DOT Officer (Member)',
           company: 'Dept. of Telecommunications',
           period: 'Aug 2025 - Present',
           description: [
-            'Official member of the Department of Telecommunications (DOT) community.',
             'Actively participating in technical initiatives and government-led discussions.',
             'Recognized for contributing to the telecommunications development ecosystem.',
           ],
           skills: ['Networking', 'Telecommunications', 'Leadership'],
-        },
-        {
-          icon: Trophy,
-          title: 'Core Lead & NEC Finalist',
-          company: 'EIC - Entrepreneurship Cell',
-          period: 'Aug 2025 - Present',
-          description: [
-            'Led initiatives as a core member of the Entrepreneurship Cell (EIC).',
-            'Represented the club at National Engineering Challenge Finalist at IIT Bombay.',
-            'Achieved All India Rank (AIR) 34, competing against top engineering talent.',
-          ],
-          skills: ['Leadership', 'Strategic Planning', 'Public Speaking'],
         },
         {
           icon: Youtube,
@@ -109,7 +64,6 @@ const Experience = () => {
           period: 'Oct 2019 - Present',
           description: [
             'Built and grew a YouTube channel to 20K+ subscribers through consistent content creation.',
-            'Analyzed audience behavior to improve retention and engagement.',
             'Managed end-to-end content production, from ideation to publishing.',
           ],
           skills: ['Content Strategy', 'Multimedia Production', 'Data Analytics'],
@@ -119,62 +73,56 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" ref={sectionRef} className="py-24 px-4 sm:px-6 bg-[var(--bg-primary)]">
-      <div className="max-w-6xl mx-auto py-10">
+    <section id="experience" className="pt-10 pb-24 md:pt-12 md:pb-32 px-4 sm:px-6 bg-[var(--bg-primary)]">
+      <div className="max-w-6xl mx-auto pb-10">
         
         {/* HEADER */}
-        <div className="mb-20 exp-header">
-          <p className="text-xs text-blue-500 uppercase tracking-[0.3em] font-bold mb-4">
-            Journey
-          </p>
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-            Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Path</span>.
+        <div className="mb-16 exp-header flex flex-col items-center text-center">
+          <h2 className="text-3xl md:text-5xl text-blue-500 font-semibold tracking-tight">
+            My Work
           </h2>
-          <p className="text-[var(--text-secondary)] mt-8 max-w-2xl text-lg font-medium leading-relaxed">
-            A specialized look into my professional journey, leadership roles, and technical growth.
-          </p>
         </div>
 
         {/* CONTENT */}
-        <div className="space-y-32">
+        <div className="space-y-16">
           {categories.map((cat) => (
-            <div key={cat.id} className="fade-up">
-              <h3 className="text-xs font-bold uppercase tracking-[0.4em] text-blue-500/80 mb-12 border-b border-[var(--border-primary)] pb-4">
+            <div key={cat.id} className="fade-up flex flex-col items-center">
+              <h3 className="text-xs font-bold uppercase tracking-[0.4em] text-blue-500/80 mb-6 text-center">
                 {cat.name}
               </h3>
               
-              <div className="space-y-12">
+              <div className="space-y-6 w-full max-w-5xl">
                 {cat.items.map((exp, index) => (
-                  <div key={index} className="exp-card grid md:grid-cols-[1fr_2fr] gap-8 md:gap-20 group">
-                    <div>
-                       <div className="flex items-center gap-3 mb-4">
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-blue-500 bg-blue-500/5 px-2 py-1 rounded border border-blue-500/10">
-                            {exp.period}
-                          </span>
-                       </div>
-                       <h4 className="text-xl font-bold tracking-tight uppercase group-hover:text-blue-500 transition-colors">
-                          {exp.title}
-                       </h4>
-                       <p className="text-sm text-[var(--text-secondary)] mt-1">{exp.company}</p>
+                  <div key={index} className="exp-card group w-full flex flex-col items-start text-left bg-[var(--bg-secondary)] p-5 md:p-6 rounded-2xl border border-[var(--border-primary)] shadow-sm hover:border-blue-500/20 hover:shadow-md transition-all duration-300">
+                    
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between w-full gap-2 mb-1">
+                      <h4 className="text-xl md:text-2xl font-extrabold tracking-tight uppercase text-[var(--text-primary)] group-hover:text-blue-500 transition-colors duration-300">
+                        {exp.title}
+                      </h4>
+                      
+                      <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]">
+                        {exp.period}
+                      </span>
+                    </div>
+                    
+                    <p className="text-xs font-semibold text-[var(--text-secondary)] mt-0.5 uppercase tracking-wider mb-2">
+                      {exp.company}
+                    </p>
+                    
+                    <div className="text-[var(--text-secondary)] text-sm md:text-base leading-relaxed font-medium space-y-2 mb-4 max-w-4xl">
+                      {exp.description.map((item, i) => (
+                        <p key={i}>{item}</p>
+                      ))}
+                    </div>
+                    
+                    <div className="flex flex-wrap justify-start gap-2 w-full border-t border-[var(--border-primary)]/50 pt-3">
+                      {exp.skills.map((skill, i) => (
+                        <span key={i} className="text-[10px] md:text-[11px] px-3 py-1 bg-[var(--bg-primary)] border border-[var(--border-primary)] rounded-md font-extrabold uppercase tracking-widest text-[var(--text-secondary)]">
+                          {skill}
+                        </span>
+                      ))}
                     </div>
 
-                    <div className="space-y-6">
-                      <ul className="space-y-4">
-                        {exp.description.map((item, i) => (
-                          <li key={i} className="flex gap-4 text-[var(--text-secondary)] text-base leading-relaxed">
-                            <span className="mt-2.5 w-1 h-1 bg-blue-500 rounded-full shrink-0" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="flex flex-wrap gap-2 pt-4">
-                        {exp.skills.map((skill, i) => (
-                          <span key={i} className="text-[10px] px-2 py-1 bg-[var(--bg-secondary)] border border-[var(--border-primary)] rounded font-bold uppercase tracking-tighter text-[var(--text-secondary)] hover:border-blue-500/30 transition-all">
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
                   </div>
                 ))}
               </div>

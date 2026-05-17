@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #ffffff;
-  --bg-primary-rgb: 255, 255, 255;
-  --bg-secondary: #f9fafb;
-  --bg-secondary-rgb: 249, 250, 251;
+  --bg-primary: #e5e7eb;
+  --bg-primary-rgb: 229, 231, 235;
+  --bg-secondary: #ffffff;
+  --bg-secondary-rgb: 255, 255, 255;
   --text-primary: #111827;
   --text-secondary: #4b5563;
   --text-muted: #6b7280;
-  --border-primary: #e5e7eb;
+  --border-primary: #d1d5db;
   --card-bg: #ffffff;
-  --card-border: #f3f4f6;
+  --card-border: #d1d5db;
   --accent-blue: #2563eb;
   --accent-cyan: #0891b2;
   --glow-color: rgba(37, 99, 235, 0.05);

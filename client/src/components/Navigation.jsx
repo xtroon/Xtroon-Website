@@ -26,7 +26,7 @@ const Navigation = () => {
 
   const navLinks = [
     { name: 'About', path: '/about' },
-    { name: 'Experience', path: '/experience' },
+    { name: 'Work', path: '/experience' },
     { name: 'Projects', path: '/projects' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -37,11 +37,11 @@ const Navigation = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'py-3 backdrop-blur-lg border-b bg-[rgba(var(--bg-primary-rgb),0.8)]'
-            : 'py-5 backdrop-blur-md lg:backdrop-blur-none bg-[rgba(var(--bg-primary-rgb),0.6)] lg:bg-transparent'
+            ? 'py-3 lg:py-2 backdrop-blur-lg border-b bg-[rgba(var(--bg-primary-rgb),0.8)]'
+            : 'py-5 lg:py-3 backdrop-blur-md bg-[rgba(var(--bg-primary-rgb),0.6)]'
         }`}
         style={{ 
-          borderColor: isScrolled ? 'var(--border-primary)' : 'transparent',
+          borderColor: isScrolled ? 'var(--border-secondary)' : 'transparent',
         }}
       >
         <div className="max-w-[90rem] mx-auto px-4 sm:px-6 md:px-10 flex items-center justify-between">
@@ -65,7 +65,6 @@ const Navigation = () => {
               <span className="text-blue-500 font-extrabold text-xl sm:text-2xl md:text-3xl">.</span>
             </div>
           </Link>
-
           {/* DESKTOP NAV */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-10 text-sm text-[var(--text-secondary)]">
             {navLinks.map((link) => (

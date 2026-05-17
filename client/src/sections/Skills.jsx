@@ -15,29 +15,35 @@ const Skills = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".reveal-header", {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".skills-header",
-          start: "top 90%",
+      gsap.fromTo(".reveal-header", 
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".skills-header",
+            start: "top 90%",
+          }
         }
-      });
+      );
 
-      gsap.from(".skill-icon-box", {
-        scale: 0.8,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.05,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-          trigger: ".skills-grid",
-          start: "top 85%",
+      gsap.fromTo(".skill-icon-box", 
+        { scale: 0.8, opacity: 1 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.05,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: ".skills-grid",
+            start: "top 85%",
+          }
         }
-      });
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -53,15 +59,15 @@ const Skills = () => {
     { name: "Tailwind", icon: SiTailwindcss, color: "#06B6D4" },
     { name: "React", icon: SiReact, color: "#61DAFB" },
     { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-    { name: "Express", icon: SiExpress, color: "#FFFFFF" },
-    { name: "Next.js", icon: SiNextdotjs, color: "#FFFFFF" },
+    { name: "Express", icon: SiExpress, color: "theme" },
+    { name: "Next.js", icon: SiNextdotjs, color: "theme" },
     { name: "Django", icon: SiDjango, color: "#092E20" },
     { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
     { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
     { name: "Git", icon: SiGit, color: "#F05032" },
-    { name: "GitHub", icon: SiGithub, color: "#FFFFFF" },
+    { name: "GitHub", icon: SiGithub, color: "theme" },
     { name: "Postman", icon: SiPostman, color: "#FF6C37" },
-    { name: "Vercel", icon: SiVercel, color: "#FFFFFF" },
+    { name: "Vercel", icon: SiVercel, color: "theme" },
   ];
 
   return (
@@ -83,18 +89,26 @@ const Skills = () => {
           {techStack.map((tech, i) => (
             <div 
               key={i} 
-              className="skill-icon-box group relative flex flex-col items-center"
-              style={{ "--tech-color": tech.color }}
+              className="skill-icon-box group flex flex-col items-center gap-3 p-4 md:p-5"
+              style={tech.color !== "theme" ? { "--tech-color": tech.color } : {}}
             >
-              <div className="relative p-4 md:p-6 transition-all duration-300 transform group-hover:scale-110">
+              <div className="relative transition-all duration-300 transform group-hover:scale-110">
                 <tech.icon 
-                  size={40} 
-                  className="transition-all duration-500 text-gray-500/50 group-hover:text-[var(--tech-color)] group-hover:opacity-100"
+                  size={45} 
+                  className={`transition-all duration-500 opacity-90 group-hover:opacity-100 drop-shadow-sm ${
+                    tech.color === "theme" 
+                      ? "text-[var(--text-primary)] group-hover:drop-shadow-[0_0_12px_var(--text-primary)]" 
+                      : "text-[var(--tech-color)] group-hover:drop-shadow-[0_0_12px_var(--tech-color)]"
+                  }`}
                 />
               </div>
               
-              {/* Tooltip Name */}
-              <span className="absolute -bottom-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-[10px] md:text-xs font-bold uppercase tracking-widest text-blue-500 whitespace-nowrap">
+              {/* Tech Name */}
+              <span className={`opacity-90 transition-all duration-300 text-[11px] md:text-xs font-bold uppercase tracking-widest text-center whitespace-nowrap ${
+                tech.color === "theme" 
+                  ? "text-[var(--text-primary)]" 
+                  : "text-[var(--text-primary)] group-hover:text-[var(--tech-color)]"
+              }`}>
                 {tech.name}
               </span>
             </div>
