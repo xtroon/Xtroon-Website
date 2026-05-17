@@ -20,11 +20,16 @@ A premium, minimalist, and theme-aware portfolio built with **React**, **Tailwin
 - **Resume Overlay**: View and download the CV without leaving the page using a full-screen modal.
 - **Premium Navigation**: Glassmorphic navbar with active link indicators and a logo hover effect.
 - **Fully Responsive**: Interleaved Hero section on mobile for optimal reading flow.
+- **GitHub Activity Calendar**: Dynamic rolling 365-day contributions grid synced in real-time with custom theme colors and an elegant right-side Less/More legend.
+- **Profile Visitor Counter**: Integrated dynamic tracking system displaying current real-time page views and engagement counts.
+- **Real-Time Discord Status**: Live tracking of online presence, active coding status, and active gaming instances powered by the Discord Lanyard API.
+- **Dynamic Weather Badge**: Live weather feeds and local temperature updates integrated directly into the landing section.
 
 ## 📈 Insights & Analytics
-- **Coding Activity**: Tracked via [WakaTime](https://wakatime.com/) to showcase consistency and focus.
-- **Visitor Counter**: Dynamic profile visitor tracking to monitor portfolio engagement.
-- **GitHub Stats**: Real-time repository metrics and contribution tracking.
+- **GitHub Calendar & Activity**: Beautiful year-long contribution grid calculated directly from active profile streams.
+- **WakaTime Coding Insights**: Dynamic wakatime logs visualizing language usage and programming stats.
+- **Profile Visitor Metrics**: Live counter showcasing portfolio hits from developers worldwide.
+- **Discord & Local Weather Integration**: Dynamic API hooks updating profile cards with active local conditions and online availability.
 
 ## ✅ Project Roadmap & Todo
 ### Completed
@@ -33,10 +38,14 @@ A premium, minimalist, and theme-aware portfolio built with **React**, **Tailwin
 - [x] **Tech Stack**: Switched to brand-accurate icons with hover effects.
 - [x] **Dynamic Titles**: Page-specific document titles for better UX.
 - [x] **Footer Evolution**: Centralized social hub with "Find me here" label.
-- [x] **Contact Form**: Connect the frontend to a emailJs server for direct email deliveries.
+- [x] **Contact Form**: Connect the frontend to an emailJs server for direct email deliveries.
 - [x] **Organized Experience**: Implement a multi-category timeline (Professional, Leadership, Learning).
+- [x] **GitHub Graph Addition**: Dynamic calendar visualization with customized dark/light grid tiles.
 
 ### In Progress / Upcoming
+- [ ] **Profile Visitor Counter**: Dynamic visitor tracking badge to show portfolio engagement.
+- [ ] **Discord Online Status**: Real-time Discord active status and gaming presence indicators using the Lanyard API.
+- [ ] **Local Weather Widget**: Live weather and condition feed based on geographic location.
 - [ ] **SEO Optimization**: Finalize meta tags, JSON-LD, and open graph images for maximum reach.
 - [ ] **Blogs & Posts**: Integrate a minimalist markdown-based blogging system.
 - [ ] **Projects Gallery**: To add current projects I'm working on and also the projects I will be working on in the future.
