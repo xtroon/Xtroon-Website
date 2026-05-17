@@ -33,13 +33,13 @@ A premium, minimalist, and theme-aware portfolio built with **React**, **Tailwin
 - [x] **Tech Stack**: Switched to brand-accurate icons with hover effects.
 - [x] **Dynamic Titles**: Page-specific document titles for better UX.
 - [x] **Footer Evolution**: Centralized social hub with "Find me here" label.
+- [x] **Contact Form**: Connect the frontend to a emailJs server for direct email deliveries.
+- [x] **Organized Experience**: Implement a multi-category timeline (Professional, Leadership, Learning).
 
 ### In Progress / Upcoming
-- [ ] **Organized Experience**: Implement a multi-category timeline (Professional, Leadership, Learning).
 - [ ] **SEO Optimization**: Finalize meta tags, JSON-LD, and open graph images for maximum reach.
 - [ ] **Blogs & Posts**: Integrate a minimalist markdown-based blogging system.
-- [ ] **Projects Gallery**: Add high-fidelity case studies and interactive demo links.
-- [ ] **Contact System**: Connect the frontend to a serverless backend for automated inquiries.
+- [ ] **Projects Gallery**: To add current projects I'm working on and also the projects I will be working on in the future.
 - [ ] **Performance**: Achieve 90+ Lighthouse scores across all metrics.
 
 ## 📦 Installation

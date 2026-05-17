@@ -4,14 +4,13 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
-import Hero from './sections/Hero';
+import Home from './sections/Home';
 import About from './sections/About';
 import Experience from './sections/Experience';
 import Projects from './sections/Projects';
 import Contact from './sections/Contact';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
-
 gsap.registerPlugin(ScrollTrigger);
 
 // Scroll to top and update title on route change
@@ -27,7 +26,7 @@ function PageManager() {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       document.documentElement.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       document.body.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      
+
       // Target the active scrollable container (#root) found by browser subagent
       const root = document.getElementById('root');
       if (root) {
@@ -104,7 +103,7 @@ function App() {
 
         <main className="pt-20">
           <Routes>
-            <Route path="/" element={<Hero />} />
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/experience" element={<Experience />} />
             <Route path="/projects" element={<Projects />} />
@@ -118,9 +117,9 @@ function App() {
         {showWip && (
           <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md transition-all duration-300">
             <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] shadow-2xl rounded-3xl p-6 md:p-8 max-w-md w-full relative flex flex-col items-center text-center">
-              
+
               {/* Close Button Icon */}
-              <button 
+              <button
                 onClick={() => setShowWip(false)}
                 className="absolute top-4 right-4 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors p-1.5 rounded-full hover:bg-[var(--border-primary)]/50"
                 aria-label="Close modal"

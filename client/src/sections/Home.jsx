@@ -4,6 +4,7 @@ import { ArrowDown, Download, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import resumePdf from '../assets/resume/ometiwari.ai.pdf';
 import heroProfileImg from '../assets/profile/me2.jpg';
+import GithubStats from '../components/GithubStats';
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -66,7 +67,8 @@ const Hero = () => {
   };
 
   return (
-    <section ref={heroRef} className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden bg-[var(--bg-primary)]">
+    <>
+      <section ref={heroRef} className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden bg-[var(--bg-primary)]">
 
       <div className="section-padding relative z-10 w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 py-10 md:py-16">
 
@@ -177,6 +179,8 @@ const Hero = () => {
       )}
 
     </section>
+    <GithubStats />
+    </>
   );
 };
 
