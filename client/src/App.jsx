@@ -19,7 +19,22 @@ function PageManager() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.body.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    };
+
+    scrollToTop();
+
+    // Multiple deferred checks to aggressively combat async loading heights and browser auto-restoration
+    const timer1 = setTimeout(scrollToTop, 5);
+    const timer2 = setTimeout(scrollToTop, 50);
+    const timer3 = setTimeout(scrollToTop, 150);
 
     // Dynamic Titles
     const titles = {
@@ -31,6 +46,12 @@ function PageManager() {
     };
 
     document.title = titles[pathname] || 'Xtroon-Portfolio | About & Projects';
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
   }, [pathname]);
 
   return null;
