@@ -8,12 +8,66 @@ import GithubStats from '../components/GithubStats';
 
 const Hero = () => {
   const heroRef = useRef(null);
+  const badgeRef = useRef(null);
   const titleRef = useRef(null);
   const imageRef = useRef(null);
   const mobileImageRef = useRef(null);
   const navigate = useNavigate();
 
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [views, setViews] = useState(0);
+  const [weather, setWeather] = useState(null);
+
+  useEffect(() => {
+    fetch("https://api.counterapi.dev/v1/xtroon/portfolio/up")
+      .then((res) => res.json())
+      .then((data) => {
+        setViews(data.value || 0);
+        console.log("Views fetched:", data.value);
+      })
+      .catch((err) => console.error("Error fetching view count:", err));
+  }, []);
+
+  // Live weather fetcher for Jodhpur, India (MBM University)
+  useEffect(() => {
+    const fetchWeather = async () => {
+      try {
+        const response = await fetch(
+          "https://api.open-meteo.com/v1/forecast?latitude=26.2389&longitude=73.0243&current_weather=true"
+        );
+        const data = await response.json();
+        const { temperature, weathercode, is_day } = data.current_weather;
+
+        let type = "sun";
+        let icon = "☀️";
+        let label = "Sunny";
+
+        if (is_day === 0 && (weathercode === 0 || weathercode === 1)) {
+          type = "night";
+          icon = "🌙";
+          label = "Clear Night";
+        } else if ([2, 3, 45, 48].includes(weathercode)) {
+          type = "cloud";
+          icon = "☁️";
+          label = "Cloudy";
+        } else if ([51, 53, 55, 61, 63, 65, 80, 81, 82, 95, 96, 99].includes(weathercode)) {
+          type = "rain";
+          icon = "🌧️";
+          label = "Rainy";
+        }
+
+        setWeather({
+          temp: Math.round(temperature),
+          type,
+          icon,
+          label,
+        });
+      } catch (err) {
+        console.error("Failed to fetch weather:", err);
+      }
+    };
+    fetchWeather();
+  }, []);
 
   // 🚀 NEW animation style (minimal + premium)
   useEffect(() => {
@@ -27,9 +81,9 @@ const Hero = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 60 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+        [badgeRef.current, titleRef.current],
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 1, ease: "power3.out", stagger: 0.15 }
       );
 
       // Animate both image refs
@@ -70,116 +124,139 @@ const Hero = () => {
     <>
       <section ref={heroRef} className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden bg-[var(--bg-primary)]">
 
-      <div className="section-padding relative z-10 w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 py-10 md:py-16">
+        <div className="section-padding relative z-10 w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 py-10 md:py-16">
 
-        {/* CONTENT WRAPPER */}
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left flex-1">
-          {/* 1. GREETING */}
-          <h1
-            ref={titleRef}
-            className="text-[1.75rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-[1.1] tracking-tight text-white"
-          >
-            Hi, I'm
-          </h1>
+          {/* CONTENT WRAPPER */}
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left flex-1">
+            {/* PROFILE VISITORS BADGE */}
+            <div
+              ref={badgeRef}
+              className="hidden mb-6 px-4 py-1.5 rounded-full bg-[var(--bg-secondary)] border border-[var(--border-primary)] text-xs sm:text-sm font-semibold text-[var(--text-secondary)] shadow-sm items-center hover:border-blue-500/30 transition-all duration-300"
+            >
+              <span className="text-blue-500 font-extrabold mr-1.5">{views}</span>
+              <span>visitors so far</span>
+            </div>
+           
 
-          {/* 2. MOBILE IMAGE (Visible only on mobile) */}
-          <div className="lg:hidden my-8">
-            <div ref={mobileImageRef} className="relative group">
-              <div className="relative w-52 h-52 sm:w-64 sm:h-64 rounded-full p-1 bg-[var(--border-primary)] overflow-hidden transition-all duration-500 shadow-xl shadow-blue-500/5">
+            {/* 1. GREETING */}
+            <h1
+              ref={titleRef}
+              className="text-[1.75rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-[1.1] tracking-tight text-[var(--text-primary)]"
+            >
+              Hi, I'm
+            </h1>
+
+            {/* 2. MOBILE IMAGE (Visible only on mobile) */}
+            <div className="lg:hidden my-8">
+              <div ref={mobileImageRef} className="relative group">
+                <div className="relative w-52 h-52 sm:w-64 sm:h-64 rounded-full p-1 bg-[var(--border-primary)] overflow-hidden transition-all duration-500 shadow-xl shadow-blue-500/5">
+                  <div className="w-full h-full overflow-hidden bg-[var(--bg-secondary)] rounded-full">
+                    <img
+                      src={heroProfileImg}
+                      alt="Ome Tiwari"
+                      className="w-full h-full object-cover transition-all duration-1000"
+                    />
+                  </div>
+                </div>
+                <div className="absolute -bottom-2 -left-2 w-10 h-10 bg-blue-600 border border-blue-500 rounded-xl flex items-center justify-center shadow-xl rotate-12 text-white">
+                  <div className="font-bold text-[10px] uppercase tracking-tighter">AI</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. NAME */}
+            <p className="text-4xl sm:text-5xl md:text-6xl text-blue-500 min-h-[3rem] mb-6 font-bold">
+              Ome Tiwari
+            </p>
+
+            {/* 4. BIO */}
+            <p className="text-[var(--text-muted)] max-w-lg mb-8 text-lg leading-relaxed">
+              I build scalable systems and AI-driven products. Focused on creating impactful solutions and continuously learning.
+            </p>
+
+            {/* 5. BUTTONS */}
+            <div className="flex gap-4 flex-wrap justify-center lg:justify-start">
+              <button
+                onClick={() => setIsResumeOpen(true)}
+                className="hero-btns group relative px-8 py-4 bg-blue-600 text-white cursor-pointer font-bold rounded-full hover:bg-blue-700 transition-all duration-300 flex items-center gap-2 shadow-lg shadow-blue-500/20"
+              >
+                <span>View my CV</span>
+                <Download size={18} className="group-hover:translate-y-1 transition-transform duration-300" />
+              </button>
+            </div>
+
+            {/* DYNAMIC WEATHER WIDGET pill button */}
+            <div className="mt-6 hero-btns text-xs sm:text-sm text-[var(--text-secondary)]   px-5 py-1.5 inline-flex items-center cursor-default transition-all duration-300">
+              <span>
+                Building cool at 
+                {weather ? (
+                  <span> {weather.temp}°C {weather.icon}</span>
+                ) : (
+                  <span className="text-[var(--text-muted)] animate-pulse ml-1">...</span>
+                )}
+                in Jodhpur, IN
+              </span>
+            </div>
+          </div>
+
+          {/* DESKTOP IMAGE (Visible only on desktop) */}
+          <div className="hidden lg:flex justify-center relative flex-1">
+            <div ref={imageRef} className="relative group">
+              <div className="relative w-64 h-64 lg:w-72 lg:h-72 rounded-full p-1 bg-[var(--border-primary)] overflow-hidden transition-all duration-500 shadow-xl shadow-blue-500/5">
                 <div className="w-full h-full overflow-hidden bg-[var(--bg-secondary)] rounded-full">
-                  <img 
+                  <img
                     src={heroProfileImg}
-                    alt="Ome Tiwari" 
-                    className="w-full h-full object-cover transition-all duration-1000" 
+                    alt="Ome Tiwari"
+                    className="w-full h-full object-cover transition-all duration-1000"
                   />
                 </div>
               </div>
-              <div className="absolute -bottom-2 -left-2 w-10 h-10 bg-blue-600 border border-blue-500 rounded-xl flex items-center justify-center shadow-xl rotate-12 text-white">
-                <div className="font-bold text-[10px] uppercase tracking-tighter">AI</div>
+              <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-blue-600 border border-blue-500 rounded-2xl flex items-center justify-center shadow-xl rotate-12 text-white">
+                <div className="font-bold text-xs uppercase tracking-tighter">AI</div>
               </div>
             </div>
           </div>
 
-          {/* 3. NAME */}
-          <p className="text-4xl sm:text-5xl md:text-6xl text-blue-500 min-h-[3rem] mb-6 font-bold">
-            Ome Tiwari
-          </p>
-
-          {/* 4. BIO */}
-          <p className="text-[var(--text-muted)] max-w-lg mb-8 text-lg leading-relaxed">
-            I build scalable systems and AI-driven products. Focused on creating impactful solutions and continuously learning.
-          </p>
-
-          {/* 5. BUTTONS */}
-          <div className="flex gap-4 flex-wrap justify-center lg:justify-start">
-            <button 
-              onClick={() => setIsResumeOpen(true)}
-              className="hero-btns group relative px-8 py-4 bg-blue-600 text-white cursor-pointer font-bold rounded-full hover:bg-blue-700 transition-all duration-300 flex items-center gap-2 shadow-lg shadow-blue-500/20"
-            >
-              <span>View my CV</span>
-              <Download size={18} className="group-hover:translate-y-1 transition-transform duration-300" />
-            </button>
-          </div>
         </div>
 
-        {/* DESKTOP IMAGE (Visible only on desktop) */}
-        <div className="hidden lg:flex justify-center relative flex-1">
-          <div ref={imageRef} className="relative group">
-            <div className="relative w-64 h-64 lg:w-72 lg:h-72 rounded-full p-1 bg-[var(--border-primary)] overflow-hidden transition-all duration-500 shadow-xl shadow-blue-500/5">
-              <div className="w-full h-full overflow-hidden bg-[var(--bg-secondary)] rounded-full">
-                <img 
-                  src={heroProfileImg}
-                  alt="Ome Tiwari" 
-                  className="w-full h-full object-cover transition-all duration-1000" 
+        {/* RESUME OVERLAY */}
+        {isResumeOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-2 sm:p-4 md:p-10">
+            <div className="relative w-full h-full max-w-5xl bg-[var(--bg-secondary)] rounded-xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+
+              <div className="p-4 border-b border-[var(--border-primary)] flex items-center justify-between bg-[var(--bg-primary)]">
+                <h3 className="font-bold text-lg hidden md:block">Ome Tiwari - Resume</h3>
+                <div className="flex items-center gap-4 ml-auto">
+                  <a
+                    href={resumePdf}
+                    download="Ome-Tiwari-Resume.pdf"
+                    className="px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-bold flex items-center gap-2 hover:bg-blue-700 transition-all"
+                  >
+                    <Download size={16} />
+                    <span>Download</span>
+                  </a>
+                  <button
+                    onClick={() => setIsResumeOpen(false)}
+                    className="p-2 hover:bg-red-500/10 text-red-500 rounded-full transition-all"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex-1 w-full bg-white overflow-hidden">
+                <iframe
+                  src={`${resumePdf}#toolbar=0`}
+                  className="w-full h-full border-none"
+                  title="Resume Viewer"
                 />
               </div>
             </div>
-            <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-blue-600 border border-blue-500 rounded-2xl flex items-center justify-center shadow-xl rotate-12 text-white">
-              <div className="font-bold text-xs uppercase tracking-tighter">AI</div>
-            </div>
           </div>
-        </div>
+        )}
 
-      </div>
-
-      {/* RESUME OVERLAY */}
-      {isResumeOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-2 sm:p-4 md:p-10">
-          <div className="relative w-full h-full max-w-5xl bg-[var(--bg-secondary)] rounded-xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col">
-            
-            <div className="p-4 border-b border-[var(--border-primary)] flex items-center justify-between bg-[var(--bg-primary)]">
-              <h3 className="font-bold text-lg hidden md:block">Ome Tiwari - Resume</h3>
-              <div className="flex items-center gap-4 ml-auto">
-                <a 
-                  href={resumePdf} 
-                  download="Ome-Tiwari-Resume.pdf"
-                  className="px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-bold flex items-center gap-2 hover:bg-blue-700 transition-all"
-                >
-                  <Download size={16} />
-                  <span>Download</span>
-                </a>
-                <button 
-                  onClick={() => setIsResumeOpen(false)}
-                  className="p-2 hover:bg-red-500/10 text-red-500 rounded-full transition-all"
-                >
-                  <X size={24} />
-                </button>
-              </div>
-            </div>
-
-            <div className="flex-1 w-full bg-white overflow-hidden">
-              <iframe 
-                src={`${resumePdf}#toolbar=0`} 
-                className="w-full h-full border-none"
-                title="Resume Viewer"
-              />
-            </div>
-          </div>
-        </div>
-      )}
-
-    </section>
-    <GithubStats />
+      </section>
+      <GithubStats />
     </>
   );
 };

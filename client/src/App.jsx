@@ -112,46 +112,6 @@ function App() {
         </main>
 
         <Footer />
-
-        {/* Under Construction Popup Modal */}
-        {showWip && (
-          <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md transition-all duration-300">
-            <div className="bg-[var(--bg-secondary)] border border-[var(--border-primary)] shadow-2xl rounded-3xl p-6 md:p-8 max-w-md w-full relative flex flex-col items-center text-center">
-
-              {/* Close Button Icon */}
-              <button
-                onClick={() => setShowWip(false)}
-                className="absolute top-4 right-4 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors p-1.5 rounded-full hover:bg-[var(--border-primary)]/50"
-                aria-label="Close modal"
-              >
-                <X size={18} strokeWidth={2.5} />
-              </button>
-
-              {/* Emoji Icon */}
-              <div className="w-16 h-16 flex items-center justify-center bg-blue-500/10 border border-blue-500/20 rounded-full mb-5 text-3xl">
-                🚧
-              </div>
-
-              {/* Title */}
-              <h3 className="text-2xl font-extrabold tracking-tight uppercase text-[var(--text-primary)] mb-3">
-                Under Development
-              </h3>
-
-              {/* Message */}
-              <p className="text-[var(--text-secondary)] text-sm md:text-base leading-relaxed font-medium mb-6">
-                Some parts of the portfolio are under development, but you can still explore it with a happy vibe! 😊✨
-              </p>
-
-              {/* Main Action Button */}
-              <button
-                onClick={() => setShowWip(false)}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-6 rounded-xl transition-all shadow-lg hover:shadow-blue-500/20 flex items-center justify-center gap-2 cursor-pointer"
-              >
-                Explore with a Happy Vibe!
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </ThemeProvider>
   );
