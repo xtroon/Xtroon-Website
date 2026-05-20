@@ -17,6 +17,40 @@ const Hero = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [views, setViews] = useState(0);
   const [weather, setWeather] = useState(null);
+  const [thoughts, setThoughts] = useState(null);
+  const [currentThought, setCurrentThought] = useState(null);
+  const thoughtsRef = useRef(null);
+
+  // Get current thought based on time of day
+  const getCurrentThought = (thoughtsData) => {
+    const hour = new Date().getHours();
+    
+    if (hour >= 8 && hour < 13) return thoughtsData.morning;
+    if (hour >= 13 && hour < 19) return thoughtsData.afternoon;
+    if (hour >= 19 && hour < 24) return thoughtsData.evening;
+    if (hour >= 0 && hour < 3) return thoughtsData.night;
+    if (hour >= 3 && hour < 8) return thoughtsData.earlyMorning;
+    
+    return thoughtsData.morning; // default
+  };
+
+  // Fetch thoughts from status.json
+  useEffect(() => {
+    fetch("/status.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setThoughts(data);
+        setCurrentThought(getCurrentThought(data));
+        
+        // Update thought every minute
+        const interval = setInterval(() => {
+          setCurrentThought(getCurrentThought(data));
+        }, 60000);
+        
+        return () => clearInterval(interval);
+      })
+      .catch((err) => console.error("Error fetching thoughts:", err));
+  }, []);
 
   useEffect(() => {
     fetch("https://api.counterapi.dev/v1/xtroon/portfolio/up")
@@ -106,6 +140,23 @@ const Hero = () => {
         }
       });
 
+      // Animate thoughts with floating motion
+      if (thoughtsRef.current) {
+        gsap.fromTo(
+          thoughtsRef.current,
+          { opacity: 0, scale: 0.95 },
+          { opacity: 1, scale: 1, duration: 1, delay: 0.3, ease: "power2.out" }
+        );
+
+        gsap.to(thoughtsRef.current, {
+          y: -8,
+          duration: 3.5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
+      }
+
       gsap.fromTo(
         '.hero-btns',
         { opacity: 0, y: 20 },
@@ -161,6 +212,19 @@ const Hero = () => {
                 <div className="absolute -bottom-2 -left-2 w-10 h-10 bg-blue-600 border border-blue-500 rounded-xl flex items-center justify-center shadow-xl rotate-12 text-white">
                   <div className="font-bold text-[10px] uppercase tracking-tighter">AI</div>
                 </div>
+
+                {/* THOUGHTS BUBBLE MOBILE */}
+                {currentThought && (
+                  <div 
+                    ref={thoughtsRef}
+                    className="absolute -top-6 -right-4 px-3 py-1.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/40 rounded-full backdrop-blur-md shadow-lg hover:border-blue-400/60 transition-all duration-300 whitespace-nowrap"
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-base">{currentThought.emoji}</span>
+                      <span className="text-[10px] font-medium text-[var(--text-primary)]">{currentThought.thought}</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -215,6 +279,19 @@ const Hero = () => {
                 <div className="font-bold text-xs uppercase tracking-tighter">AI</div>
               </div>
             </div>
+
+            {/* THOUGHTS BUBBLE - UPPER RIGHT */}
+            {currentThought && (
+              <div 
+                ref={thoughtsRef}
+                className="absolute -top-6 -right-8 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/40 rounded-full backdrop-blur-md shadow-lg hover:border-blue-400/60 transition-all duration-300 whitespace-nowrap"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">{currentThought.emoji}</span>
+                  <span className="text-xs font-medium text-[var(--text-primary)]">{currentThought.thought}</span>
+                </div>
+              </div>
+            )}
           </div>
 
         </div>

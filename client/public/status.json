@@ -1,0 +1,22 @@
+{
+  "morning": {
+    "emoji": "☀️",
+    "thought": "Starting fresh, coding begins"
+  },
+  "afternoon": {
+    "emoji": "💻",
+    "thought": "Deep in focus mode"
+  },
+  "evening": {
+    "emoji": "🌆",
+    "thought": "Wrapping up today's wins"
+  },
+  "night": {
+    "emoji": "🌙",
+    "thought": "Late night debugging session"
+  },
+  "earlyMorning": {
+    "emoji": "🌃",
+    "thought": "Almost there, coffee boost"
+  }
+}
