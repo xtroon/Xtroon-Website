@@ -8,14 +8,12 @@ import GithubStats from '../components/GithubStats';
 
 const Hero = () => {
   const heroRef = useRef(null);
-  const badgeRef = useRef(null);
   const titleRef = useRef(null);
   const imageRef = useRef(null);
   const mobileImageRef = useRef(null);
   const navigate = useNavigate();
 
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-  const [views, setViews] = useState(0);
   const [weather, setWeather] = useState(null);
   const [thoughts, setThoughts] = useState(null);
   const [currentThought, setCurrentThought] = useState(null);
@@ -50,16 +48,6 @@ const Hero = () => {
         return () => clearInterval(interval);
       })
       .catch((err) => console.error("Error fetching thoughts:", err));
-  }, []);
-
-  useEffect(() => {
-    fetch("https://api.counterapi.dev/v1/xtroon/portfolio/up")
-      .then((res) => res.json())
-      .then((data) => {
-        setViews(data.value || 0);
-        console.log("Views fetched:", data.value);
-      })
-      .catch((err) => console.error("Error fetching view count:", err));
   }, []);
 
   // Live weather fetcher for Kishangarh, Ajmer, India
@@ -115,9 +103,9 @@ const Hero = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        [badgeRef.current, titleRef.current],
+        titleRef.current,
         { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out", stagger: 0.15 }
+        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
       );
 
       // Animate both image refs
@@ -179,16 +167,6 @@ const Hero = () => {
 
           {/* CONTENT WRAPPER */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left flex-1">
-            {/* PROFILE VISITORS BADGE */}
-            <div
-              ref={badgeRef}
-              className="hidden mb-6 px-4 py-1.5 rounded-full bg-[var(--bg-secondary)] border border-[var(--border-primary)] text-xs sm:text-sm font-semibold text-[var(--text-secondary)] shadow-sm items-center hover:border-blue-500/30 transition-all duration-300"
-            >
-              <span className="text-blue-500 font-extrabold mr-1.5">{views}</span>
-              <span>visitors so far</span>
-            </div>
-           
-
             {/* 1. GREETING */}
             <h1
               ref={titleRef}
@@ -342,7 +320,7 @@ const Hero = () => {
             <p className=" text-blue-400 text-[var(--text-secondary)] text-[3px] sm:text-[35px] font-medium">
               Currently working on:
             </p>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className=" hover:text-blue-300 text-xl sm:text-2xl lg:text-3xl font-bold transition-colors hover:underline">
+            <a href="https://github.com/xtroon/FormSphere-Smart-Form-Management-Tool" target="_blank" rel="noopener noreferrer" className=" hover:text-blue-300 text-xl sm:text-2xl lg:text-3xl font-bold transition-colors hover:underline">
               FormSphere - Smart Form management Tool with Docs
             </a>
           </div>
