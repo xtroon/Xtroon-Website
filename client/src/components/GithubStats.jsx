@@ -27,7 +27,7 @@ const GithubStats = () => {
   };
 
   return (
-    <section className="py-20 px-4 sm:px-6 bg-[var(--bg-primary)] text-[var(--text-primary)] border-t border-[var(--border-primary)]/50">
+    <section className="py-20 px-4 sm:px-6 bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <div className="max-w-6xl mx-auto git-container">
 
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 border-b border-[var(--border-primary)]/50 pb-6 select-none">

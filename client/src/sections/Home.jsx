@@ -62,12 +62,12 @@ const Hero = () => {
       .catch((err) => console.error("Error fetching view count:", err));
   }, []);
 
-  // Live weather fetcher for Jodhpur, India (MBM University)
+  // Live weather fetcher for Kishangarh, Ajmer, India
   useEffect(() => {
     const fetchWeather = async () => {
       try {
         const response = await fetch(
-          "https://api.open-meteo.com/v1/forecast?latitude=26.2389&longitude=73.0243&current_weather=true"
+          "https://api.open-meteo.com/v1/forecast?latitude=26.1633&longitude=74.8711&current_weather=true"
         );
         const data = await response.json();
         const { temperature, weathercode, is_day } = data.current_weather;
@@ -258,7 +258,7 @@ const Hero = () => {
                 ) : (
                   <span className="text-[var(--text-muted)] animate-pulse ml-1">...</span>
                 )}
-                in Jodhpur, IN
+                in Kishangarh, Ajmer
               </span>
             </div>
           </div>
@@ -295,6 +295,7 @@ const Hero = () => {
           </div>
 
         </div>
+
 
         {/* RESUME OVERLAY */}
         {isResumeOpen && (
@@ -333,6 +334,21 @@ const Hero = () => {
         )}
 
       </section>
+
+      {/* CURRENTLY WORKING ON SECTION */}
+      <section className="py-12 px-4 sm:px-6 bg-[var(--bg-primary)] border-t border-[var(--border-primary)]">
+        <div className="section-padding max-w-6xl mx-auto">
+          <div className="flex flex-col gap-3">
+            <p className=" text-blue-400 text-[var(--text-secondary)] text-[3px] sm:text-[35px] font-medium">
+              Currently working on:
+            </p>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className=" hover:text-blue-300 text-xl sm:text-2xl lg:text-3xl font-bold transition-colors hover:underline">
+              FormSphere - Smart Form management Tool with Docs
+            </a>
+          </div>
+        </div>
+      </section>
+
       <GithubStats />
     </>
   );
