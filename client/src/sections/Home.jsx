@@ -314,7 +314,7 @@ const Hero = () => {
       </section>
 
       {/* CURRENTLY WORKING ON SECTION */}
-      <section className="py-12 px-4 sm:px-6 bg-[var(--bg-primary)] border-t border-[var(--border-primary)]">
+      {/* <section className="py-12 px-4 sm:px-6 bg-[var(--bg-primary)] border-t border-[var(--border-primary)]">
         <div className="section-padding max-w-6xl mx-auto">
           <div className="flex flex-col gap-3">
             <p className=" text-blue-400 text-[var(--text-secondary)] text-[3px] sm:text-[35px] font-medium">
@@ -325,7 +325,7 @@ const Hero = () => {
             </a>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <GithubStats />
     </>

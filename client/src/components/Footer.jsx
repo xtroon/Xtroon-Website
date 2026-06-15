@@ -19,11 +19,11 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="py-12 border-t bg-[var(--bg-primary)] transition-colors duration-300" style={{ borderColor: 'var(--border-primary)' }}>
+    <footer className="pt-16 pb-0 border-t bg-[var(--bg-primary)] transition-colors duration-300 overflow-hidden" style={{ borderColor: 'var(--border-primary)' }}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-8">
           
-          <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-blue-500/80 mb-2">
+          <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-blue-500/80">
             Find me here
           </p>
 
@@ -43,13 +43,17 @@ const Footer = () => {
             ))}
           </div>
 
-          {/* Copyright */}
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-sm text-[var(--text-muted)] font-medium">
-              © {new Date().getFullYear()} <span className="text-[var(--text-primary)] font-bold">Xtroon</span>. All rights reserved.
-            </p>
-          </div>
         </div>
+      </div>
+
+      {/* Big xtroon text taking full width */}
+      <div className="w-full border-t border-[var(--border-primary)] text-center mt-16 pt-12 pb-6 select-none overflow-hidden relative group">
+        {/* Subtle accent glow on hover */}
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/0 to-blue-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+        
+        <h1 className="text-[14vw] font-black tracking-tighter leading-none text-gray-400/40 hover:text-gray-900 dark:text-neutral-800 dark:hover:text-neutral-100 transition-all duration-700 cursor-default transform hover:scale-[1.01] origin-center">
+          xtroon
+        </h1>
       </div>
     </footer>
   );
