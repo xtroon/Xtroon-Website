@@ -4,6 +4,7 @@ import { ArrowDown, Download, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import resumePdf from '../assets/resume/ometiwari.ai.pdf';
 import heroProfileImg from '../assets/profile/me2.jpg';
+import bgVdo from '../assets/videos/bgvdo.mp4';
 import GithubStats from '../components/GithubStats';
 
 const Hero = () => {
@@ -163,6 +164,21 @@ const Hero = () => {
     <>
       <section ref={heroRef} className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden bg-[var(--bg-primary)]">
 
+        {/* Faded Background Video */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="w-full h-full object-cover opacity-20"
+          >
+            <source src={bgVdo} type="video/mp4" />
+          </video>
+          {/* Subtle gradient overlay to blend perfectly with the section boundaries */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-primary)]/50 via-transparent to-[var(--bg-primary)]"></div>
+        </div>
+
         <div className="section-padding relative z-10 w-full flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 py-10 md:py-16">
 
           {/* CONTENT WRAPPER */}
@@ -314,18 +330,18 @@ const Hero = () => {
       </section>
 
       {/* CURRENTLY WORKING ON SECTION */}
-      {/* <section className="py-12 px-4 sm:px-6 bg-[var(--bg-primary)] border-t border-[var(--border-primary)]">
+      <section className="py-12 px-4 sm:px-6 bg-[var(--bg-primary)] border-t border-[var(--border-primary)]">
         <div className="section-padding max-w-6xl mx-auto">
           <div className="flex flex-col gap-3">
             <p className=" text-blue-400 text-[var(--text-secondary)] text-[3px] sm:text-[35px] font-medium">
               Currently working on:
             </p>
-            <a href="https://github.com/xtroon/FormSphere-Smart-Form-Management-Tool" target="_blank" rel="noopener noreferrer" className=" hover:text-blue-300 text-xl sm:text-2xl lg:text-3xl font-bold transition-colors hover:underline">
-              FormSphere - Smart Form management Tool with Docs
+            <a href="https://leetcode.com/u/omtiwari0/" target="_blank" rel="noopener noreferrer" className=" hover:text-blue-300 text-xl sm:text-2xl lg:text-3xl font-bold transition-colors hover:underline">
+              DSA - Data Structures and Algorithms.
             </a>
           </div>
         </div>
-      </section> */}
+      </section>
 
       <GithubStats />
     </>
