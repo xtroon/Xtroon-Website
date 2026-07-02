@@ -6,6 +6,7 @@ import resumePdf from '../assets/resume/ometiwari.ai.pdf';
 import heroProfileImg from '../assets/profile/me2.jpg';
 import bgVdo from '../assets/videos/bgvdo.mp4';
 import GithubStats from '../components/GithubStats';
+import SpotifyWidget from '../components/SpotifyWidget';
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -23,13 +24,13 @@ const Hero = () => {
   // Get current thought based on time of day
   const getCurrentThought = (thoughtsData) => {
     const hour = new Date().getHours();
-    
+
     if (hour >= 8 && hour < 13) return thoughtsData.morning;
     if (hour >= 13 && hour < 19) return thoughtsData.afternoon;
     if (hour >= 19 && hour < 24) return thoughtsData.evening;
     if (hour >= 0 && hour < 3) return thoughtsData.night;
     if (hour >= 3 && hour < 8) return thoughtsData.earlyMorning;
-    
+
     return thoughtsData.morning; // default
   };
 
@@ -40,12 +41,12 @@ const Hero = () => {
       .then((data) => {
         setThoughts(data);
         setCurrentThought(getCurrentThought(data));
-        
+
         // Update thought every minute
         const interval = setInterval(() => {
           setCurrentThought(getCurrentThought(data));
         }, 60000);
-        
+
         return () => clearInterval(interval);
       })
       .catch((err) => console.error("Error fetching thoughts:", err));
@@ -166,11 +167,11 @@ const Hero = () => {
 
         {/* Faded Background Video */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover opacity-20"
           >
             <source src={bgVdo} type="video/mp4" />
@@ -209,7 +210,7 @@ const Hero = () => {
 
                 {/* THOUGHTS BUBBLE MOBILE */}
                 {currentThought && (
-                  <div 
+                  <div
                     ref={thoughtsRef}
                     className="absolute -top-6 -right-4 px-3 py-1.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/40 rounded-full backdrop-blur-md shadow-lg hover:border-blue-400/60 transition-all duration-300 whitespace-nowrap"
                   >
@@ -223,7 +224,7 @@ const Hero = () => {
             </div>
 
             {/* 3. NAME */}
-            <p className="text-4xl sm:text-5xl md:text-6xl text-blue-500 min-h-[3rem] mb-6 font-bold">
+            <p className="text-4xl sm:text-5xl md:text-6xl text-blue-500 min-h-[3rem] mb-4 font-bold">
               Ome Tiwari
             </p>
 
@@ -246,7 +247,7 @@ const Hero = () => {
             {/* DYNAMIC WEATHER WIDGET pill button */}
             <div className="mt-6 hero-btns text-xs sm:text-sm text-[var(--text-secondary)]   px-5 py-1.5 inline-flex items-center cursor-default transition-all duration-300">
               <span>
-                Building cool at 
+                Building cool at
                 {weather ? (
                   <span> {weather.temp}°C {weather.icon}</span>
                 ) : (
@@ -255,7 +256,11 @@ const Hero = () => {
                 in Kishangarh, Ajmer
               </span>
             </div>
+            {/* SPOTIFY LAST PLAYED WIDGET */}
+            <SpotifyWidget />
           </div>
+
+
 
           {/* DESKTOP IMAGE (Visible only on desktop) */}
           <div className="hidden lg:flex justify-center relative flex-1">
@@ -276,7 +281,7 @@ const Hero = () => {
 
             {/* THOUGHTS BUBBLE - UPPER RIGHT */}
             {currentThought && (
-              <div 
+              <div
                 ref={thoughtsRef}
                 className="absolute -top-6 -right-8 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/40 rounded-full backdrop-blur-md shadow-lg hover:border-blue-400/60 transition-all duration-300 whitespace-nowrap"
               >
@@ -331,13 +336,16 @@ const Hero = () => {
 
       {/* CURRENTLY WORKING ON SECTION */}
       <section className="py-12 px-4 sm:px-6 bg-[var(--bg-primary)] border-t border-[var(--border-primary)]">
-        <div className="section-padding max-w-6xl mx-auto">
+        <div className="section-padding max-w-6xl mx-auto flex flex-col gap-12 items-start">
           <div className="flex flex-col gap-3">
-            <p className=" text-blue-400 text-[var(--text-secondary)] text-[3px] sm:text-[35px] font-medium">
+            <p className=" text-blue-400 text-[var(--text-secondary)] text-sm sm:text-lg font-medium mb-1">
               Currently working on:
             </p>
             <a href="https://leetcode.com/u/omtiwari0/" target="_blank" rel="noopener noreferrer" className=" hover:text-blue-300 text-xl sm:text-2xl lg:text-3xl font-bold transition-colors hover:underline">
               DSA - Data Structures and Algorithms.
+            </a>
+            <a href="https://github.com/xtroon/DrawForge-Collaborative-app" target="_blank" rel="noopener noreferrer" className=" hover:text-blue-300 text-xl sm:text-2xl lg:text-3xl font-bold transition-colors hover:underline">
+              DrawForge - Realtime Collaborative Drawing App.
             </a>
           </div>
         </div>
